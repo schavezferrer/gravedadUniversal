@@ -6,6 +6,7 @@ class Sun extends Players
 	function Sun(p : GameObject)
 	{
 		player = p;
+		type = 1;
 	}
 	
 	
@@ -25,7 +26,7 @@ function Awake()
 
 function OnCollisionStay(col : Collision)
 {
-	scrSun.setGrounded(true);
+	scrSun.onStay(col);
 }
 
 function OnCollisionExit(col : Collision)

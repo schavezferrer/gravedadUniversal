@@ -31,7 +31,7 @@ function Update ()
 {
 	inputs = VirtualInput.UpdateInput();	
 	scrPlayer.setInputs(inputs);
-	if(inputs[3]) swap();
+	if(inputs[3]) changeControl();
 
 	
 	
@@ -41,7 +41,7 @@ function FixedUpdate()
 {
 	scrPlayer.movement();
 }
-function swap()
+function changeControl()
 {
 	var target : String = VirtualInput.touchPlayer();
 	if(target == "Sun")

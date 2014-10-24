@@ -8,7 +8,7 @@ static class VirtualInput
 		var inputs : boolean[] = new boolean[4];
 		inputs[0] = Input.GetKey(KeyCode.A);
 		inputs[1] = Input.GetKey(KeyCode.D);
-		inputs[2] = Input.GetKeyDown(KeyCode.W);
+		inputs[2] = Input.GetKey(KeyCode.Space);
 		inputs[3] = Input.GetMouseButtonDown(0);
 		
 		return inputs;

@@ -18,5 +18,6 @@ function FixedUpdate () {
 	else if(inputs[1]) offset.x = 1;
 	transform.position.x += (target.position.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
 	transform.position.z += (target.position.z + offset.z - transform.position.z)*Time.fixedDeltaTime*5;
+	transform.position.y += (target.position.y + offset.y - transform.position.y)*Time.fixedDeltaTime*0.5;
 
 }
