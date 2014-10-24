@@ -7,10 +7,15 @@ private var scrMoon : Moon;
 var objSun : GameObject;
 private var scrSun : Sun;
 
+var tagControl : GameObject;
+
 private var scrPlayer : Players;
 private var currPlayer : int;
 
 private var inputs : boolean[];
+
+private var endMoon : boolean;
+private var endSun : boolean;
 
 
 function Start () {
@@ -24,6 +29,9 @@ function Start () {
 	inputs = VirtualInput.UpdateInput();	
 	scrMoon.setInputs(inputs);
 	scrSun.setInputs(inputs);
+	
+	tagControl.transform.parent = objMoon.transform;
+	tagControl.transform.localPosition = Vector3.zero;
 
 }
 
@@ -31,32 +39,110 @@ function Update ()
 {
 	inputs = VirtualInput.UpdateInput();	
 	scrPlayer.setInputs(inputs);
-	if(inputs[3]) changeControl();
 
+	changeControl();
 	
+	if(endMoon && endSun)
+	{
+		Debug.Log("Ended");
+	}
+}
+
+
+function OnGUI()
+{
+	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
+	{
+		swap();
+	}
+	
+//	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1+100,Screen.width*0.07,Screen.height*0.07),"Change"))
+//	{
+//		changeControl();
+//	}
+//	
 	
 }
 
 function FixedUpdate()
 {
-	scrPlayer.movement();
+	scrMoon.movement();
+	scrSun.movement();
+	if(Input.GetKeyDown(KeyCode.S))
+	{
+		swap();
+	}
+	if(Input.GetKeyDown(KeyCode.C))
+	{
+		changeControl();
+	}
 }
+
+function swap()
+{
+	var posSun : Vector3 = objSun.transform.position;
+	var posMoon : Vector3 = objMoon.transform.position;
+	
+	objMoon.transform.position = posSun;
+	objSun.transform.position = posMoon;
+	
+//	scrMoon.setGravity(Physics.gravity);
+		
+	scrMoon.inverDir = false;
+	
+}	
+
 function changeControl()
 {
-	var target : String = VirtualInput.touchPlayer();
-	if(target == "Sun")
-	{
-		currPlayer = 1;
-		scrPlayer = scrSun;
-		Camera.main.GetComponent(cameraControl).target = objSun.transform;
-//		Camera.main.GetComponent(SmoothLookAt).target = objSun.transform;
-	}
-	if(target == "Moon")
-	{
-		currPlayer = 0;
-		scrPlayer = scrMoon;
-		Camera.main.GetComponent(cameraControl).target = objMoon.transform;
-//		Camera.main.GetComponent(SmoothLookAt).target = objMoon.transform;
 	
-	}
+//	if(inputs[3] || Input.GetKeyDown(KeyCode.C))
+//	{
+//		if(Input.GetKeyDown(KeyCode.C))
+//		{
+//			if(currPlayer == 1) target = "Moon";
+//			if(currPlayer == 0) target = "Sun";
+//		} else 	
+
+		if(inputs[3])
+		{
+			var target : String;
+
+			target = VirtualInput.touchPlayer();
+//
+//			if(currPlayer == 1) target = "Moon";
+//			if(currPlayer == 0) target = "Sun";
+			if(target == "Sun")
+			{
+				currPlayer = 1;
+				scrPlayer = scrSun;
+				tagControl.transform.parent = objSun.transform;
+				tagControl.transform.localPosition = Vector3.zero;
+				
+				scrMoon.setActive(false);
+				scrSun.setActive(true);
+				objMoon.rigidbody.angularVelocity.z =0;
+
+			}
+			if(target == "Moon")
+			{
+				currPlayer = 0;
+				scrPlayer = scrMoon;
+				tagControl.transform.parent = objMoon.transform;
+				tagControl.transform.localPosition = Vector3.zero;
+				scrMoon.setActive(true);
+				scrSun.setActive(false);		
+				objSun.rigidbody.angularVelocity.z =0;
+			}
+		}
+//	}
+}
+
+function setEndMoon(val : boolean)
+{
+	endMoon = val;	
+}
+
+function setEndSun(val : boolean)
+{
+	endSun = val;	
 }

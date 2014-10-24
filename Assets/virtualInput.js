@@ -5,18 +5,30 @@ static class VirtualInput
 
 	function UpdateInput() : boolean[]
 	{
-		var inputs : boolean[] = new boolean[4];
+		var inputs : boolean[] = newInputs();
 		inputs[0] = Input.GetKey(KeyCode.A);
 		inputs[1] = Input.GetKey(KeyCode.D);
 		inputs[2] = Input.GetKey(KeyCode.Space);
 		inputs[3] = Input.GetMouseButtonDown(0);
+		inputs[4] = Input.GetMouseButton(0);
 		
 		return inputs;
 	}
 	
 	function getPosInput() : Vector2
 	{
-		return Input.mousePosition;
+		if( Application.platform == RuntimePlatform.Android || 
+			Application.platform == RuntimePlatform.IPhonePlayer)
+		{
+			if(Input.touchCount) return Input.touches[0].position;	
+			else return Vector2.zero;
+		}
+		else return Input.mousePosition;
+	}
+	
+	function newInputs() : boolean[]
+	{
+		return new boolean[5];
 	}
 	
 	function touchPlayer() : String
@@ -24,7 +36,7 @@ static class VirtualInput
 		var ray : Ray = Camera.main.ScreenPointToRay (getPosInput());
 		var hit : RaycastHit;
 		var layerMask : int = 1<< 8;
-		if(Physics.Raycast(ray,hit,layerMask))
+		if(Physics.Raycast(ray,hit,100,layerMask))
 		{
 			return hit.collider.name;
 		}

@@ -15,6 +15,14 @@ class Moon extends Players
 		gravity = val;
 	}
 	
+	function attract()
+	{
+		if(type == 0) 
+		{
+//			player.rigidbody.AddForce(gravity);
+//			else player.rigidbody.AddForce(-Physics.gravity - normal*10);
+		}
+	}
 	
 	
 }
@@ -29,11 +37,16 @@ function Awake()
 	scrMoon = new Moon(gameObject);
 }
 
+function FixedUpdate()
+{
+
+	scrMoon.attract();
+}
+
 function OnCollisionStay(col : Collision)
 {
 	scrMoon.onStay(col);
-	scrMoon.setGravity(-col.contacts[0].normal);
-	Debug.DrawRay(col.contacts[0].point,col.contacts[0].normal);
+//	scrMoon.setGravity(-col.contacts[0].normal);
 
 }
 
@@ -42,6 +55,3 @@ function OnCollisionExit(col : Collision)
 	scrMoon.setGrounded(false);
 	
 }
-function OnCollisionEnter(col : Collision)
-{
-}	

@@ -2,13 +2,14 @@
 
 class Players
 {
-	private var inputs : boolean[];
+	protected var inputs : boolean[];
 	protected var player : GameObject;
 	protected var isGrounded : boolean;
 	private var velocity : Vector3; 
-	private var normal : Vector3;
+	protected var normal : Vector3;
 	protected var type : int; 
 	var inverDir : boolean;
+	protected var active : boolean;
 	
 	protected var gravity : Vector3;
 	
@@ -17,7 +18,14 @@ class Players
 	{
 		player = p;
 	}
-	
+	function setActive(val : boolean)
+	{
+		active = val;
+		if(!active)
+		{
+			inputs = VirtualInput.newInputs();
+		}
+	}
 	function setGrounded(ground : boolean)
 	{
 		isGrounded = ground;
@@ -27,6 +35,9 @@ class Players
 	{
 		normal = nor;	
 	}
+	
+	
+	
 	function movement()
 	{
 		if(isGrounded)
@@ -41,28 +52,26 @@ class Players
 				if(Mathf.Abs(player.rigidbody.angularVelocity.z)< 0.1) player.rigidbody.angularVelocity.z =0;
 				else player.rigidbody.AddTorque(-Mathf.Sign(player.rigidbody.angularVelocity.z)*2*Vector3.forward);
 			}
-			velocity = player.rigidbody.velocity;
+			velocity = player.rigidbody.velocity*0.8;
 
 		}
 		else
-		{
-			if(inputs[0]) player.rigidbody.velocity.x = velocity.x; 
-			else if(inputs[1]) player.rigidbody.velocity.x = velocity.x;
-			else  
-			{
+		{	
+			player.rigidbody.velocity.x = velocity.x; 
+//			else if(inputs[1]) player.rigidbody.velocity.x = Mathf.Abs(velocity.x);
+//			else  
+//			{
 				if(Mathf.Abs(player.rigidbody.velocity.x)< 0.1) player.rigidbody.velocity.x =0;
 				else player.rigidbody.velocity.x -= Mathf.Sign(player.rigidbody.velocity.x)*Time.deltaTime;
-			}
-			
+//			}
 		}
 		
 		if(type == 0) 
 		{
-			if(!isGrounded) player.rigidbody.AddForce(-Physics.gravity+gravity);
-			else player.rigidbody.AddForce(-Physics.gravity - normal*10);
+			player.rigidbody.AddForce(gravity);
 		}
 		
-		if(inputs[2] && isGrounded) 
+		if(inputs[2] && isGrounded && type == 0) 
 		{
 			player.rigidbody.AddForce(normal*3, ForceMode.Impulse);
 		}
