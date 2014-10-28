@@ -40,7 +40,13 @@ function Start () {
 
 function Update () 
 {
-	inputs = VirtualInput.UpdateInput();	
+	inputs = VirtualInput.UpdateInput();
+	if(VirtualInput.touchPlayer() || iniSwap)
+	{
+		inputs[0] = false;
+		inputs[1] = false;
+		inputs[2] = false;
+	}	
 	scrPlayer.setInputs(inputs);
 
 	changeControl();
@@ -50,15 +56,23 @@ function Update ()
 		Debug.Log("Ended");
 	}
 	
+	if(iniSwap) swap();
+
 	
 }
 
 
 function OnGUI()
 {
-	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
+	if(!iniSwap)
 	{
-		swap();
+		if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
+		{
+			iniSwap = true;
+			phase = 0;
+			posSunSwap  = objSun.transform.position;
+			posMoonSwap  = objMoon.transform.position;
+		}
 	}
 	
 	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1+100,Screen.width*0.07,Screen.height*0.07),"Link"))
@@ -87,18 +101,75 @@ function FixedUpdate()
 
 	
 }
+private var iniSwap : boolean;
+private var phase : int;
+
+var posSunSwap : Vector3 ;
+var posMoonSwap : Vector3 ;
+
 
 function swap()
 {
-	var posSun : Vector3 = objSun.transform.position;
-	var posMoon : Vector3 = objMoon.transform.position;
 	
-	objMoon.transform.position = posSun;
-	objSun.transform.position = posMoon;
+	switch(phase)
+	{
+		case 0:
+			if((objMoon.transform.localScale.magnitude > 0.1 || objSun.transform.localScale.magnitude > 0.1))
+			{
+				objMoon.transform.localScale = Vector3.Lerp(objMoon.transform.localScale,Vector3.one*0.05,Time.deltaTime*20);
+				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.05,Time.deltaTime*20);
+				scrMoon.inverDir = false;	
+
+			}
+			else
+			{
+		//		iniSwap = false;
+				phase = 1;
+//				objMoon.transform.position = posSunSwap;
+//				objSun.transform.position = posMoonSwap;
+			}
+		break;
+		
+		
+		case 1:
+			
+			
+			objSun.rigidbody.useGravity = false;
+			
+			objMoon.transform.position = Vector3.Lerp(objMoon.transform.position,posSunSwap,Time.deltaTime*20);
+			objSun.transform.position = Vector3.Lerp(objSun.transform.position,posMoonSwap,Time.deltaTime*20);
+			
+			if( Vector3.Distance(objMoon.transform.position,posSunSwap) < 0.1 &&
+				Vector3.Distance(objSun.transform.position,posMoonSwap) < 0.1)
+			{
+				phase = 2;
+			}
+
+		
+		break;
+		
+		case 2:
+		
+			if(((objMoon.transform.localScale-Vector3.one*0.5).magnitude > 0.01 && (objSun.transform.localScale-Vector3.one*0.5).magnitude > 0.01))
+			{
+				objMoon.transform.localScale = Vector3.Lerp(objMoon.transform.localScale,Vector3.one*0.5,Time.deltaTime*20);
+				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.5,Time.deltaTime*20);
+				scrMoon.inverDir = false;	
+			}
+			else
+			{
+				phase = 0;
+				iniSwap = false;
+				objSun.rigidbody.useGravity = true;
+
+			}
+		
+		break;
+	}
+	
 	
 //	scrMoon.setGravity(Physics.gravity);
 		
-	scrMoon.inverDir = false;
 	
 }	
 
@@ -144,7 +215,7 @@ function changeControl()
 //
 //			if(currPlayer == 1) target = "Moon";
 //			if(currPlayer == 0) target = "Sun";
-			if(target == "Sun")
+			if(target == "SunInput")
 			{
 				currPlayer = 1;
 				scrPlayer = scrSun;
@@ -156,7 +227,7 @@ function changeControl()
 				objMoon.rigidbody.angularVelocity.z =0;
 
 			}
-			if(target == "Moon")
+			if(target == "MoonInput")
 			{
 				currPlayer = 0;
 				scrPlayer = scrMoon;

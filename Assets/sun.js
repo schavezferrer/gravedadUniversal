@@ -39,7 +39,7 @@ class Sun extends Players
 //				if(timerAttraction>0.3)
 //				{
 					var target : String = VirtualInput.touchPlayer();
-					if(target == "Sun")
+					if(target == "SunInput")
 					{	
 						isAttracting = !isAttracting;
 						
