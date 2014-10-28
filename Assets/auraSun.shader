@@ -1,9 +1,8 @@
-﻿Shader "Custom/swap" {
+﻿Shader "Custom/auraSun" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Tint ("Tint", Color) = (1,1,1,1)
-		_alpha ("alpha", Range(0,2)) = 0
-		_alpha2 ("alpha2", Range(0,2)) = 0
+		
 	}
 	SubShader {
 		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" }
@@ -20,10 +19,8 @@
 			#pragma target 3.0
 	
 			sampler2D _MainTex;
-			half _alpha;
-			half _alpha2;
+			
 			fixed4 _Tint;
-			half _Ypos;
 			
 			struct v2f {
 		    float4  pos : SV_POSITION;
@@ -31,20 +28,7 @@
 		  
 			};
        
-			half planarWave(vec2 p)
-			{
-				float A = 1;
-				float T = 1;
-				float lambda = 0.1;
-				float2 k = normalize(float2(0,1))*3.1413/lambda;
-				float w = 2*3.1413/T;
-				float fi = 0;
-				float2 l = p;
-				float t = _Time[1];
-			  	float wave = A*cos(dot(k,l)-w*t+fi);
-		   
-		   		return wave;
-			}
+			
 	        float4 _MainTex_ST; // nose
 
 			v2f vert (appdata_base v)
@@ -60,24 +44,9 @@
 			half4 frag (v2f i) : COLOR
 			{
 				fixed4 col = tex2D(_MainTex, float2(i.uv));
-				col =_Tint;
 				
-					col.z = 1-exp(-i.uv.y);
-					col.w =1;
-					
-				if(i.uv.y > _alpha)
-				{
-					col.w = pow(1-(i.uv.y-_alpha)/(2.0-_alpha),5);
-				}
-				
-				if(i.uv.y < _alpha2) col.w =0;
-//				if(col.w)	
-//				{
-//					col = fixed4(0,0,1,0);
-//					col.w = _alpha;
-//				}
-	
-				return col;
+				 
+				return _Tint*2 ;
 			}
 			
 			

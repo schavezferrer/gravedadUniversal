@@ -1,16 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\attractingField.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\auraSun.shader">
     <Files>
-      <File FileName="Assets\Mobil.js" Line="17" Column="1" />
-      <File FileName="Assets\virtualInput.js" Line="28" Column="28" />
-      <File FileName="Assets\gameManager.js" Line="125" Column="3" />
+      <File FileName="Assets\Mobil.js" Line="34" Column="1" />
+      <File FileName="Assets\virtualInput.js" Line="1" Column="1" />
+      <File FileName="Assets\gameManager.js" Line="1" Column="1" />
       <File FileName="Assets\classPlayers.js" Line="1" Column="1" />
       <File FileName="Assets\sun.js" Line="1" Column="1" />
       <File FileName="Assets\attraction.js" Line="1" Column="1" />
-      <File FileName="Assets\attractingField.shader" Line="62" Column="25" />
-      <File FileName="..\Test\Assets\Shaders\Blur 5.shader" Line="8" Column="13" />
-      <File FileName="Assets\gravity.js" Line="35" Column="1" />
+      <File FileName="..\Test\Assets\Shaders\Blur 5.shader" Line="1" Column="1" />
+      <File FileName="Assets\gravity.js" Line="1" Column="1" />
+      <File FileName="Assets\swap.shader" Line="1" Column="1" />
+      <File FileName="Assets\attractingField.shader" Line="1" Column="1" />
+      <File FileName="Assets\attracted.shader" Line="36" Column="17" />
+      <File FileName="Assets\auraSun.shader" Line="49" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

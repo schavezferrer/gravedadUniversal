@@ -1,9 +1,9 @@
-﻿Shader "Custom/swap" {
+﻿Shader "Custom/attracted" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Tint ("Tint", Color) = (1,1,1,1)
-		_alpha ("alpha", Range(0,2)) = 0
-		_alpha2 ("alpha2", Range(0,2)) = 0
+		_Timer ("timer", Range(0,2)) = 0
+		_Timer2 ("timer2", Range(0,2)) = 0
 	}
 	SubShader {
 		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" }
@@ -20,8 +20,8 @@
 			#pragma target 3.0
 	
 			sampler2D _MainTex;
-			half _alpha;
-			half _alpha2;
+			half _Timer;
+			half _Timer2;
 			fixed4 _Tint;
 			half _Ypos;
 			
@@ -60,24 +60,33 @@
 			half4 frag (v2f i) : COLOR
 			{
 				fixed4 col = tex2D(_MainTex, float2(i.uv));
-				col =_Tint;
+				float amplitude = 0.9;
+				float r = 1;
+				half2 center;
 				
-					col.z = 1-exp(-i.uv.y);
-					col.w =1;
-					
-				if(i.uv.y > _alpha)
-				{
-					col.w = pow(1-(i.uv.y-_alpha)/(2.0-_alpha),5);
-				}
+//				center[0] = 1 + r*cos(_Time[1]);
+//				center[1] = 1 + r*sin(_Time[1]);
 				
-				if(i.uv.y < _alpha2) col.w =0;
-//				if(col.w)	
-//				{
-//					col = fixed4(0,0,1,0);
-//					col.w = _alpha;
-//				}
-	
-				return col;
+				center[0] = _Timer;
+				center[1] = _Timer2;
+				
+				half2 sigma = half2(1,0.5)*0.05; 
+				float gauss = amplitude*exp(-((pow(i.uv.x-center.x,2)/(2*pow(sigma.x,2)))+
+											 (pow(i.uv.y-center.y,2)/(2*pow(sigma.y,2))))); 
+//				center[0] = _Timer+1;
+//				center[1] = _Timer2+1;							 
+//			 	
+//			 	if(center[0]>2)center[0] -= 2;
+//			 	if(center[1]>2)center[1] -= 2;
+//			 	
+//			 	float gauss2 = amplitude*exp(-((pow(i.uv.x-center.x,2)/(2*pow(sigma.x,2)))+
+//			 	(pow(i.uv.y-center.y,2)/(2*pow(sigma.y,2))))); 
+				 
+				_Tint.w = 0;
+				
+				
+				
+				return _Tint + fixed4(1,1,1,1)*gauss*1;
 			}
 			
 			

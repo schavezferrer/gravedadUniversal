@@ -2,13 +2,30 @@
 
 var attracting : boolean;
 
+private var timer : float; 
+private var timer2 : float; 
+
 function Start () {
 
 }
 
-function Update () {
+function FixedUpdate () {
 
+	timer += 1.5*Time.fixedDeltaTime;
+	timer2 += 1.5*Time.fixedDeltaTime*0.15;
+	if(timer > 2) 
+	{
+		timer = 0;
+	}
+	
+	if(timer2 > 2) 
+	{
+		timer2 = 0;
+	}
+	
 //	transform.rg = Mathf.Sin(Time.time)*Vector3.up;
+	renderer.material.SetFloat("_Timer",timer);
+	renderer.material.SetFloat("_Timer2",timer2);
 
 }
 
