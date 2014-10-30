@@ -1,19 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\auraSun.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Mobil.js">
     <Files>
-      <File FileName="Assets\Mobil.js" Line="34" Column="1" />
-      <File FileName="Assets\virtualInput.js" Line="1" Column="1" />
-      <File FileName="Assets\gameManager.js" Line="1" Column="1" />
+      <File FileName="Assets\gameManager.js" Line="342" Column="22" />
       <File FileName="Assets\classPlayers.js" Line="1" Column="1" />
-      <File FileName="Assets\sun.js" Line="1" Column="1" />
-      <File FileName="Assets\attraction.js" Line="1" Column="1" />
-      <File FileName="..\Test\Assets\Shaders\Blur 5.shader" Line="1" Column="1" />
-      <File FileName="Assets\gravity.js" Line="1" Column="1" />
       <File FileName="Assets\swap.shader" Line="1" Column="1" />
-      <File FileName="Assets\attractingField.shader" Line="1" Column="1" />
-      <File FileName="Assets\attracted.shader" Line="36" Column="17" />
-      <File FileName="Assets\auraSun.shader" Line="49" Column="19" />
+      <File FileName="Assets\auraSun.shader" Line="39" Column="8" />
+      <File FileName="Assets\auraMoon.shader" Line="1" Column="1" />
+      <File FileName="Assets\fire.js" Line="16" Column="1" />
+      <File FileName="Assets\death.js" Line="1" Column="1" />
+      <File FileName="Assets\Ice.js" Line="25" Column="1" />
+      <File FileName="Assets\Mobil.js" Line="112" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

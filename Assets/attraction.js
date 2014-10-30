@@ -26,7 +26,7 @@ function FixedUpdate () {
 //	transform.rg = Mathf.Sin(Time.time)*Vector3.up;
 	renderer.material.SetFloat("_Timer",timer);
 	renderer.material.SetFloat("_Timer2",timer2);
-
+	attracting = true;
 }
 
 function OnTriggerEnter(col : Collider)

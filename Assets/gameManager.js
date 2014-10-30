@@ -1,5 +1,6 @@
 ﻿#pragma strict
 
+var maxDist : float;
 
 var objMoon : GameObject;
 private var scrMoon : Moon;
@@ -7,7 +8,7 @@ private var scrMoon : Moon;
 var objSun : GameObject;
 private var scrSun : Sun;
 
-var tagControl : GameObject;
+//var tagControl : GameObject;
 var linkControl : GameObject;
 
 private var scrPlayer : Players;
@@ -32,28 +33,125 @@ function Start () {
 	inputs = VirtualInput.UpdateInput();	
 	scrMoon.setInputs(inputs);
 	scrSun.setInputs(inputs);
-	
-	tagControl.transform.parent = objMoon.transform;
-	tagControl.transform.localPosition = Vector3.zero;
+//	
+//	tagControl.transform.parent = objMoon.transform;
+//	tagControl.transform.localPosition = Vector3.zero;
+
+	objSun.transform.FindChild("TagControl").active = false;
+	objMoon.transform.FindChild("TagControl").active = true;
 
 }
 
 function Update () 
 {
 	inputs = VirtualInput.UpdateInput();
+	var distB = Vector3.Distance(objMoon.transform.position,objSun.transform.position);
+
+	
 	if(VirtualInput.touchPlayer() || iniSwap)
 	{
 		inputs[0] = false;
 		inputs[1] = false;
 		inputs[2] = false;
-	}	
+	}
+	
+	if(distB > maxDist)
+	{
+		var dir : Vector2; 
+		if(currPlayer == 0)
+		{
+			dir = Vector2(objSun.transform.position.x,objSun.transform.position.y) - 
+				  Vector2(objMoon.transform.position.x,objMoon.transform.position.y);
+			
+			scrMoon.stop = 0;
+			
+			if(dir.x < 0 && inputs[1]) 
+			{
+				inputs[1] = false;
+				inputs[2] = false;
+				objMoon.rigidbody.velocity.x = 0;
+
+			}
+			else if(dir.x > 0 && inputs[0]) 
+			{
+				inputs[0] = false;
+				inputs[2] = false;
+
+			}
+			else if(dir.x < 0 && inputs[0] )
+			{
+				scrMoon.stop = 1;
+			}
+			else if(dir.x > 0 && inputs[1] )
+			{
+				scrMoon.stop = 1;
+			}
+			else if(!inputs[0] && !inputs[1])
+			{
+				scrMoon.stop = 1;
+			}
+			
+			
+			if(objMoon.rigidbody.velocity.x>0 || objMoon.rigidbody.velocity.x < 0)
+			{
+				objMoon.rigidbody.velocity.x = 0;
+			}
+//			else 
+		}
+		
+		if(currPlayer == 1)
+		{
+			dir = Vector2(objMoon.transform.position.x,objMoon.transform.position.y) - 
+				  Vector2(objSun.transform.position.x,objSun.transform.position.y);
+			
+			scrSun.stop = 0;
+			
+			if(dir.x < 0 && inputs[1]) 
+			{
+				inputs[1] = false;
+				inputs[2] = false;
+				objSun.rigidbody.velocity.x = 0;
+
+			}
+			else if(dir.x > 0 && inputs[0]) 
+			{
+				inputs[0] = false;
+				inputs[2] = false;
+
+			}
+			else if(dir.x < 0 && inputs[0] )
+			{
+				scrMoon.stop = 1;
+			}
+			else if(dir.x > 0 && inputs[1] )
+			{
+				scrMoon.stop = 1;
+			}
+			else if(!inputs[0] && !inputs[1])
+			{
+				scrMoon.stop = 1;
+			}
+			
+			
+			if(objSun.rigidbody.velocity.x>0 || objSun.rigidbody.velocity.x < 0)
+			{
+				objSun.rigidbody.velocity.x = 0;
+			}
+//			else 
+		}
+	}
+	else scrSun.stop = 1;
+
+	
+	
+	
 	scrPlayer.setInputs(inputs);
 
 	changeControl();
 	
 	if(endMoon && endSun)
 	{
-		Debug.Log("Ended");
+//		Debug.Log("Ended");
 	}
 	
 	if(iniSwap) swap();
@@ -61,6 +159,10 @@ function Update ()
 	
 }
 
+function setLinked(val : boolean)
+{
+	linked = val;
+}
 
 function OnGUI()
 {
@@ -75,10 +177,12 @@ function OnGUI()
 		}
 	}
 	
-	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1+100,Screen.width*0.07,Screen.height*0.07),"Link"))
+	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1+100,Screen.width*0.07,Screen.height*0.07),"Reload"))
 	{
-		linked = !linked;
-		linkControl.particleSystem.renderer.enabled = linked;
+//		linked = !linked;
+//		linkControl.particleSystem.renderer.enabled = linked;
+
+		Application.LoadLevel(Application.loadedLevelName);
 	}
 	
 	
@@ -88,14 +192,7 @@ function FixedUpdate()
 {
 	scrMoon.movement();
 	scrSun.movement();
-//	if(Input.GetKeyDown(KeyCode.S))
-//	{
-//		swap();
-//	}
-//	if(Input.GetKeyDown(KeyCode.C))
-//	{
-//		changeControl();
-//	}
+
 	
 	if(linked) link();
 
@@ -219,8 +316,10 @@ function changeControl()
 			{
 				currPlayer = 1;
 				scrPlayer = scrSun;
-				tagControl.transform.parent = objSun.transform;
-				tagControl.transform.localPosition = Vector3.zero;
+//				tagControl.transform.parent = objSun.transform;
+//				tagControl.transform.localPosition = Vector3.zero;
+				objSun.transform.FindChild("TagControl").active = true;
+				objMoon.transform.FindChild("TagControl").active = false;
 				
 				scrMoon.setActive(false);
 				scrSun.setActive(true);
@@ -231,11 +330,16 @@ function changeControl()
 			{
 				currPlayer = 0;
 				scrPlayer = scrMoon;
-				tagControl.transform.parent = objMoon.transform;
-				tagControl.transform.localPosition = Vector3.zero;
+//				tagControl.transform.parent = objMoon.transform;
+//				tagControl.transform.localPosition = Vector3.zero;
+				
+				objSun.transform.FindChild("TagControl").active = false;
+				objMoon.transform.FindChild("TagControl").active = true;
+				
 				scrMoon.setActive(true);
 				scrSun.setActive(false);		
 				objSun.rigidbody.angularVelocity.z =0;
+				setLinked(false);
 			}
 		}
 //	}

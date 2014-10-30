@@ -36,7 +36,9 @@ function moveWithoutRestore()
 		{
 			vel = (Vector3.Dot(dir,transform.right));
 			vel = Mathf.Pow(vel*mod,11);
+//			rigidbody.MovePosition(rigidbody.position + Vector3.right * vel * mutliVel * Time.deltaTime);
 			transform.Translate(Vector3.right * Time.deltaTime*vel*mutliVel); 
+//			rigidbody.AddForce(Vector3.right *mutliVel);
 		}
 		
 		dir2 = (transform.position-startPosition).normalized;
@@ -47,6 +49,10 @@ function moveWithoutRestore()
 			vel = (Vector3.Dot(dir,transform.right));
 			vel = Mathf.Pow(vel*mod,11);
 			transform.Translate(Vector3.right * Time.deltaTime*vel*mutliVel); 
+//			rigidbody.MovePosition(rigidbody.position + Vector3.right * vel * mutliVel * Time.deltaTime);
+//			rigidbody.AddForce(-Vector3.right * vel*mutliVel*50);
+//			Debug.Log(vel*mutliVel);
+
 		}
 	}
 }
@@ -99,6 +105,11 @@ function OnCollisionStay(col : Collision)
 function OnCollisionExit(col : Collision)
 {
 	if(col.gameObject.CompareTag("Player")) mod = 1;
+}
+
+function OnCollisionEnter(col : Collision)
+{
+//	if(col.gameObject.CompareTag("Player")) mod = 1;
 }
 
 

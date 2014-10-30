@@ -7,6 +7,9 @@ class Players
 	protected var isGrounded : boolean;
 	private var velocity : Vector3; 
 	protected var normal : Vector3;
+	
+	var stop : float = 1;
+	
 	protected var type : int; 
 	var inverDir : boolean;
 	protected var active : boolean;
@@ -57,7 +60,7 @@ class Players
 		}
 		else
 		{	
-			player.rigidbody.velocity.x = velocity.x; 
+			player.rigidbody.velocity.x = velocity.x*stop; 
 //			else if(inputs[1]) player.rigidbody.velocity.x = Mathf.Abs(velocity.x);
 //			else  
 //			{

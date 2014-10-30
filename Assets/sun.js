@@ -56,13 +56,13 @@ class Sun extends Players
 		}
 		if(isAttracting)
 		{
-			increaseRange();
+//			increaseRange();
 		}
 		else 
 		{
-			decreaseRange();
-			timerAttraction = 0;
-			(attractingField.GetComponent(attraction) as attraction).attracting = false;
+//			decreaseRange();
+//			timerAttraction = 0;
+//			(attractingField.GetComponent(attraction) as attraction).attracting = false;
 		}
 	}
 	function decreaseRange()
@@ -88,7 +88,7 @@ function Start()
 
 function Update()
 {
-	scrSun.attracting();
+//	scrSun.attracting();
 
 }
 

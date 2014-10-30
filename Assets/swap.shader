@@ -4,6 +4,7 @@
 		_Tint ("Tint", Color) = (1,1,1,1)
 		_alpha ("alpha", Range(0,2)) = 0
 		_alpha2 ("alpha2", Range(0,2)) = 0
+		_offset ("Ofsset", float) = 0
 	}
 	SubShader {
 		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" }
@@ -24,6 +25,7 @@
 			half _alpha2;
 			fixed4 _Tint;
 			half _Ypos;
+			half _offset;
 			
 			struct v2f {
 		    float4  pos : SV_POSITION;
@@ -31,20 +33,7 @@
 		  
 			};
        
-			half planarWave(vec2 p)
-			{
-				float A = 1;
-				float T = 1;
-				float lambda = 0.1;
-				float2 k = normalize(float2(0,1))*3.1413/lambda;
-				float w = 2*3.1413/T;
-				float fi = 0;
-				float2 l = p;
-				float t = _Time[1];
-			  	float wave = A*cos(dot(k,l)-w*t+fi);
-		   
-		   		return wave;
-			}
+	
 	        float4 _MainTex_ST; // nose
 
 			v2f vert (appdata_base v)
@@ -60,7 +49,21 @@
 			half4 frag (v2f i) : COLOR
 			{
 				fixed4 col = tex2D(_MainTex, float2(i.uv));
-				col =_Tint;
+				
+				
+				float amplitude = 0.9;
+				float r = 0.45;
+				half2 center;
+				center[0] =1+cos(_Time[1]+_offset);
+				
+				center[1] = 1.5 ;
+//				half2 center = half2(_DinamicCenter[0],_DinamicCenter[1]); 
+				half2 sigma = half2(1,1)*0.1; 
+				float gauss = amplitude*exp(-((pow(i.uv.x-center.x,2)/(2*pow(sigma.x,2)))+
+											 (pow(i.uv.y-center.y,2)/(2*pow(sigma.y,2))))); 
+				
+				
+				col =_Tint ;
 				
 					col.z = 1-exp(-i.uv.y);
 					col.w =1;
@@ -76,7 +79,7 @@
 //					col = fixed4(0,0,1,0);
 //					col.w = _alpha;
 //				}
-	
+				col += + fixed4(1,1,1,1)*gauss;
 				return col;
 			}
 			

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{23B9BA6A-79A1-A93C-2BCA-4594EB9F02B4}") = "Gravedad", "Assembly-CSharp-firstpass.csproj", "{32BC8E73-E8D0-16D7-5ED0-76AAB03E04E1}"
 EndProject
+Project("{23B9BA6A-79A1-A93C-2BCA-4594EB9F02B4}") = "Gravedad", "Assembly-CSharp.csproj", "{1D6B679A-940A-D22D-8770-7260F130CA5F}"
+EndProject
 Project("{23B9BA6A-79A1-A93C-2BCA-4594EB9F02B4}") = "Gravedad", "Assembly-CSharp-Editor.csproj", "{325F1109-DA15-2CE8-59EF-457569F41ED8}"
 EndProject
 Project("{23B9BA6A-79A1-A93C-2BCA-4594EB9F02B4}") = "Gravedad", "Assembly-UnityScript-firstpass.unityproj", "{C7D944DB-76A5-17A9-2A68-B3B813FA20DD}"
@@ -19,6 +21,10 @@ Global
 		{32BC8E73-E8D0-16D7-5ED0-76AAB03E04E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32BC8E73-E8D0-16D7-5ED0-76AAB03E04E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32BC8E73-E8D0-16D7-5ED0-76AAB03E04E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6B679A-940A-D22D-8770-7260F130CA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6B679A-940A-D22D-8770-7260F130CA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6B679A-940A-D22D-8770-7260F130CA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6B679A-940A-D22D-8770-7260F130CA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{325F1109-DA15-2CE8-59EF-457569F41ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{325F1109-DA15-2CE8-59EF-457569F41ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{325F1109-DA15-2CE8-59EF-457569F41ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,7 +41,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																						GlobalSection(MonoDevelopProperties) = preSolution
+																																									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
