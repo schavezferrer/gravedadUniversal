@@ -162,11 +162,18 @@ function Update ()
 function setLinked(val : boolean)
 {
 	linked = val;
-	if(!linked) 
+	if(linked) 
 	{
-		linkControl.transform.position = objSun.transform.position;
+		if(currPlayer == 0)
+		{
+			linked = false;
+		}
+
 		
 	}
+	else	linkControl.transform.position = objSun.transform.position;
+
+	
 	linkControl.active = linked;
 }
 
@@ -290,19 +297,13 @@ function link()
 	{
 		dir  = (objMoon.transform.position - objSun.transform.position);
 		objSun.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
-//		linkControl.transform.position = objMoon.transform.position;
-//		linkControl.transform.right = -dir.normalized;
-//		linkControl.particleSystem.startLifetime = dir.magnitude/5;
-	
+
 	}
 	else if(currPlayer == 1)
 	{
 		dir = -(objMoon.transform.position - objSun.transform.position);
 		objMoon.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
-//		linkControl.transform.position = objSun.transform.position;
-//		linkControl.transform.right = -dir.normalized;
-//		linkControl.particleSystem.startLifetime = dir.magnitude/5;
-//		
+	
 	}
 }
 
@@ -365,6 +366,7 @@ function changeControl()
 				scrMoon.setActive(true);
 				scrSun.setActive(false);		
 				objSun.rigidbody.angularVelocity.z =0;
+				
 				setLinked(false);
 			}
 		}
