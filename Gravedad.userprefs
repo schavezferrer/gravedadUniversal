@@ -1,16 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Mobil.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\swap.shader">
     <Files>
-      <File FileName="Assets\gameManager.js" Line="342" Column="22" />
-      <File FileName="Assets\classPlayers.js" Line="1" Column="1" />
-      <File FileName="Assets\swap.shader" Line="1" Column="1" />
-      <File FileName="Assets\auraSun.shader" Line="39" Column="8" />
-      <File FileName="Assets\auraMoon.shader" Line="1" Column="1" />
-      <File FileName="Assets\fire.js" Line="16" Column="1" />
-      <File FileName="Assets\death.js" Line="1" Column="1" />
-      <File FileName="Assets\Ice.js" Line="25" Column="1" />
-      <File FileName="Assets\Mobil.js" Line="112" Column="1" />
+      <File FileName="Assets\Scripts\attraction.js" Line="34" Column="20" />
+      <File FileName="Assets\Scripts\camera.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cameraControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\classPlayers.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\death.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Ice.js" Line="1" Column="1" />
+      <File FileName="Assets\linkControl.js" Line="18" Column="1" />
+      <File FileName="Assets\Scripts\gameManager.js" Line="167" Column="42" />
+      <File FileName="Assets\Scripts\fire.js" Line="12" Column="1" />
+      <File FileName="Assets\Shaders\swap.shader" Line="63" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
