@@ -1,9 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gameManager.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Tutorial2.js">
     <Files>
-      <File FileName="Assets\Scripts\gameManager.js" Line="176" Column="2" />
-      <File FileName="Assets\Scripts\sun.js" Line="86" Column="12" />
+      <File FileName="Assets\linkControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\gameManager.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sun.js" Line="1" Column="1" />
+      <File FileName="Assets\linkControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cameraControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\auraSun.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\auraMoon.shader" Line="1" Column="1" />
+      <File FileName="Assets\texto.js" Line="1" Column="1" />
+      <File FileName="Assets\Tutorial1.js" Line="1" Column="1" />
+      <File FileName="Assets\Tutorial3.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\virtualInput.js" Line="1" Column="1" />
+      <File FileName="Assets\Tutorial2.js" Line="37" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

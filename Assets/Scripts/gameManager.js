@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var maxDist : float;
+var maxDist : float = 10;
 
 var objMoon : GameObject;
 private var scrMoon : Moon;
@@ -20,6 +20,9 @@ private var endMoon : boolean;
 private var endSun : boolean;
 
 private var linked : boolean;
+
+private var posSunSwap : Vector3 ;
+private var posMoonSwap : Vector3 ;
 
 
 function Start () {
@@ -158,7 +161,10 @@ function Update ()
 
 	
 }
-
+function getCurrPlayer()
+{
+	return currPlayer;
+}
 function setLinked(val : boolean)
 {
 	linked = val;
@@ -214,8 +220,6 @@ function FixedUpdate()
 private var iniSwap : boolean;
 private var phase : int;
 
-var posSunSwap : Vector3 ;
-var posMoonSwap : Vector3 ;
 
 
 function swap()

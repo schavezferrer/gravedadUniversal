@@ -61,7 +61,11 @@
      <Compile Include="Assets\Scripts\sun.js" />
      <Compile Include="Assets\Scripts\timing.js" />
      <Compile Include="Assets\Scripts\virtualInput.js" />
+     <Compile Include="Assets\Tutorial1.js" />
+     <Compile Include="Assets\Tutorial2.js" />
+     <Compile Include="Assets\Tutorial3.js" />
      <Compile Include="Assets\linkControl.js" />
+     <Compile Include="Assets\texto.js" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Shaders\swap.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

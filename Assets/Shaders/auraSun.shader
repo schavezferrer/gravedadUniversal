@@ -38,7 +38,8 @@
 			    v2f o;
 			    
 		     	float3 viewDir = normalize(ObjSpaceViewDir(v.vertex));
-	            float dotProduct = 1 - dot(v.normal, viewDir);
+//	            float dotProduct = 1 - dot(v.normal, viewDir);
+	            float dotProduct = 1 - dot(v.normal, fixed3(0,0,1));
 //	            float rimWidth = 1;s
 	            o.color = smoothstep(1 - rimWidth, 1.0, dotProduct);
 	           

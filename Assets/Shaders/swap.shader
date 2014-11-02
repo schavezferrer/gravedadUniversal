@@ -7,7 +7,7 @@
 		_offset ("Ofsset", float) = 0
 	}
 	SubShader {
-		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" }
+		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" "IgnoreProjector"="True"}
 		Pass
 		{
 			ZWrite On

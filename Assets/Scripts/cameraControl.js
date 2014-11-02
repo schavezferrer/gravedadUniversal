@@ -19,9 +19,25 @@ function FixedUpdate () {
 	
 	pos.x =  (moon.position.x + sun.position.x)/2;
 	pos.y =  (moon.position.y + sun.position.y)/2;
-	var distance : float = Vector2.Distance(Vector2(moon.position.x,moon.position.y),Vector2(sun.position.x,sun.position.y))*1.5;
-	if(distance <  15) distance = 15;
-	pos.z = - distance;
+	
+	var distance : float = Vector2.Distance(Vector2(moon.position.x,moon.position.y),Vector2(sun.position.x,sun.position.y));
+
+	if(Camera.main.isOrthoGraphic)
+	{
+		pos.z = -10;
+//		Camera.main.orthographicSize = distance*0.2;
+		if(distance*0.4 <  7) distance = 7;
+		else distance *= 0.4;
+		Camera.main.orthographicSize = distance;
+
+	}
+	else
+	{
+		distance *= 0.75;
+		if(distance <  15) distance = 15;
+		pos.z = - distance;
+	}
+	
 //	transform.position.x += (target.position.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
 	transform.position.x += (pos.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
 	transform.position.y += (pos.y + offset.y - transform.position.y)*Time.fixedDeltaTime*5;
