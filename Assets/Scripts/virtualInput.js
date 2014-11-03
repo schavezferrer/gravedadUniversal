@@ -31,6 +31,16 @@ static class VirtualInput
 		return inputs;
 	}
 	
+	function onClick()
+	{
+		if(Application.platform == RuntimePlatform.Android || 
+		Application.platform == RuntimePlatform.IPhonePlayer)
+		{
+			return Input.touchCount >0;
+		}
+		else return Input.GetMouseButtonDown(0);
+	}
+	
 	function getPosInput() : Vector2
 	{
 		if( Application.platform == RuntimePlatform.Android || 

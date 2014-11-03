@@ -24,6 +24,11 @@ private var linked : boolean;
 private var posSunSwap : Vector3 ;
 private var posMoonSwap : Vector3 ;
 
+private var moonEnabled : boolean;
+private var sunEnabled : boolean;
+private var swapEnabled : boolean;
+
+private var timerEnd : float;
 
 function Start () {
 
@@ -32,11 +37,12 @@ function Start () {
 	
 	scrPlayer = scrMoon;
 	currPlayer = 0;
-	
+	moonEnabled = true;
+	sunEnabled = true;
 	inputs = VirtualInput.UpdateInput();	
 	scrMoon.setInputs(inputs);
 	scrSun.setInputs(inputs);
-//	
+	swapEnabled = Application.loadedLevelName != "Level1" && Application.loadedLevelName != "Level2";	
 //	tagControl.transform.parent = objMoon.transform;
 //	tagControl.transform.localPosition = Vector3.zero;
 
@@ -148,23 +154,54 @@ function Update ()
 	
 	
 	
-	scrPlayer.setInputs(inputs);
+	if((moonEnabled && currPlayer == 0) || (sunEnabled && currPlayer == 1) ) scrPlayer.setInputs(inputs);
+	if (!moonEnabled) scrMoon.setInputs(VirtualInput.newInputs());
+	if (!sunEnabled) scrSun.setInputs(VirtualInput.newInputs());
 
 	changeControl();
 	
 	if(endMoon && endSun)
 	{
-//		Debug.Log("Ended");
+		moonEnabled = false;
+		sunEnabled = false;
+		
+		timerEnd += Time.deltaTime;
+		
+		if(timerEnd > 2) Application.LoadLevel(Application.loadedLevel+1);		
 	}
 	
 	if(iniSwap) swap();
 
 	
 }
+function setSwapEnabled(val : boolean)
+{
+	swapEnabled = val;
+}	
+function setMoonEnabled(val : boolean)
+{
+	moonEnabled = val;
+}	
+function setSunEnabled(val : boolean)
+{
+	sunEnabled = val;
+}
 function getCurrPlayer()
 {
 	return currPlayer;
 }
+
+function getSunEnabled()
+{
+	return sunEnabled;
+}
+function getMoonEnabled()
+{
+	return moonEnabled;
+}
+
+
+
 function setLinked(val : boolean)
 {
 	linked = val;
@@ -185,7 +222,7 @@ function setLinked(val : boolean)
 
 function OnGUI()
 {
-	if(!iniSwap)
+	if(!iniSwap && swapEnabled)
 	{
 		if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
 		{
@@ -271,10 +308,10 @@ function swap()
 		
 		case 2:
 		
-			if(((objMoon.transform.localScale-Vector3.one*0.5).magnitude > 0.01 && (objSun.transform.localScale-Vector3.one*0.5).magnitude > 0.01))
+			if(((objMoon.transform.localScale-Vector3.one*0.5).magnitude > 0.01 && (objSun.transform.localScale-Vector3.one*0.73).magnitude > 0.01))
 			{
 				objMoon.transform.localScale = Vector3.Lerp(objMoon.transform.localScale,Vector3.one*0.5,Time.deltaTime*20);
-				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.5,Time.deltaTime*20);
+				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.73,Time.deltaTime*20);
 				scrMoon.inverDir = false;	
 			}
 			else
@@ -330,7 +367,7 @@ function changeControl()
 //
 //			if(currPlayer == 1) target = "Luna";
 //			if(currPlayer == 0) target = "Sol";
-			if(target == "SunInput")
+			if(target == "SunInput" && sunEnabled)
 			{
 				currPlayer = 1;
 				scrPlayer = scrSun;
@@ -351,7 +388,7 @@ function changeControl()
 				objMoon.rigidbody.angularVelocity.z =0;
 
 			}
-			if(target == "MoonInput")
+			if(target == "MoonInput" && moonEnabled)
 			{
 				currPlayer = 0;
 				scrPlayer = scrMoon;

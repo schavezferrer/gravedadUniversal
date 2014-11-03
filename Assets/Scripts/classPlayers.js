@@ -43,6 +43,11 @@ class Players
 	
 	function movement()
 	{
+//		if(type == 1) 
+//		{
+//			if(player.rigidbody.velocity.y > 0) isGrounded = false;
+//			Debug.Log(isGrounded);
+//		}
 		if(isGrounded)
 		{
 			var sign : int;
@@ -82,7 +87,12 @@ class Players
 	function setInputs(inp : boolean[]) {inputs = inp;}
 	function onStay(col : Collision)
 	{
-		setGrounded(true);
+		if(type == 0) setGrounded(true);
+		else
+		{
+			if(col.gameObject.layer == 12) setGrounded(false);
+			else setGrounded(true);
+		}
 		var lastNormal : Vector3 = Vector3.zero;
 		for(var norm : ContactPoint in col.contacts)
 		{

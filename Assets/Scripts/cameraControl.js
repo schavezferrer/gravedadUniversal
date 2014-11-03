@@ -4,6 +4,9 @@ var moon  : Transform;
 var sun : Transform;
 var offset : Vector3;
 var pos : Vector3;
+var maxX : float; 
+var minX : float; 
+
 private var inputs : boolean[];
 
 function Start () {
@@ -26,7 +29,7 @@ function FixedUpdate () {
 	{
 		pos.z = -10;
 //		Camera.main.orthographicSize = distance*0.2;
-		if(distance*0.4 <  7) distance = 7;
+		if(distance*0.4 <  9) distance = 9;
 		else distance *= 0.4;
 		Camera.main.orthographicSize = distance;
 
@@ -37,9 +40,13 @@ function FixedUpdate () {
 		if(distance <  15) distance = 15;
 		pos.z = - distance;
 	}
-	
+	var move : Vector3;
+	move.x = transform.position.x + (pos.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
+	move.y = transform.position.y +(pos.y + offset.y - transform.position.y)*Time.fixedDeltaTime*5;
+	move.z = transform.position.z + (pos.z + offset.z - transform.position.z)*Time.fixedDeltaTime*5;
 //	transform.position.x += (target.position.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
-	transform.position.x += (pos.x + offset.x - transform.position.x)*Time.fixedDeltaTime*5;
+
+	if(move.x > minX && move.x < maxX) transform.position.x = move.x;
 	transform.position.y += (pos.y + offset.y - transform.position.y)*Time.fixedDeltaTime*5;
 	transform.position.z += (pos.z + offset.z - transform.position.z)*Time.fixedDeltaTime*5;
 //	transform.position.z += (target.position.z + offset.z - transform.position.z)*Time.fixedDeltaTime*5;

@@ -26,7 +26,7 @@ function FixedUpdate () {
 		if(timer < -1) GameObject.Destroy(gameObject.transform.parent.gameObject);
 	}
 //	Debug.Log(VirtualInput.touchPlayer());
-	if(VirtualInput.touchPlayer() == "SunInput")  desvanecer = true;
+	if(VirtualInput.onClick()) if(VirtualInput.touchPlayer() == "SunInput")  desvanecer = true;
 }
 
 function OnTriggerEnter(Col : Collider)

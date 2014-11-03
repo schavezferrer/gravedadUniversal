@@ -1,9 +1,13 @@
 ﻿#pragma strict
 
 var obj : GameObject;
+var target : GameObject;
 private var desvanecer : boolean;
 private var mostrar : boolean;
 private var timer : float;
+
+private var done : boolean;
+
 
 function Start () {
 
@@ -13,6 +17,30 @@ function Start () {
 
 function FixedUpdate () {
 
+
+	if(!done)
+	{
+		if(Vector3.Distance(transform.position,target.transform.position) < 0.1)
+		{
+			done = true;
+			if(	(Camera.main.GetComponent(gameManager) as gameManager).getSunEnabled())
+			{
+				
+				mostrar = true;
+		
+				gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Sol").transform.position;
+				gameObject.transform.parent.FindChild("Dedo").position.z = -5;
+				gameObject.transform.parent.FindChild("Dedo").position.x += 3;
+				gameObject.transform.parent.FindChild("Dedo").position.y += 1.5;
+				
+			}
+			GameObject.Find("Luna").rigidbody.velocity = Vector3.zero;
+			GameObject.Find("Luna").rigidbody.angularVelocity = Vector3.zero;
+			
+			(Camera.main.GetComponent(gameManager) as gameManager).setMoonEnabled(false);
+		}
+	}
+	
 
 	if(mostrar && !desvanecer)
 	{
@@ -25,7 +53,7 @@ function FixedUpdate () {
 		obj.transform.FindChild("Dedo").FindChild("Texto").active = true;
 	}
 	
-	if(VirtualInput.touchPlayer() == "SunInput")  desvanecer = true;
+	if(VirtualInput.onClick())  if(VirtualInput.touchPlayer() == "SunInput")  desvanecer = true;
 
 	
 	if(desvanecer && mostrar)
@@ -46,6 +74,6 @@ function FixedUpdate () {
 
 function OnTriggerEnter(Col : Collider)
 {
-//	if(Col.gameObject.CompareTag("Player")) desvanecer = true;
-	if(Col.gameObject.CompareTag("Player")) mostrar = true;
+
+	
 }

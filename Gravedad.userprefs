@@ -2,18 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gameManager.js">
     <Files>
-      <File FileName="Assets\Scripts\gameManager.js" Line="1" Column="1" />
-      <File FileName="Assets\linkControl.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\gameManager.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\sun.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\cameraControl.js" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\auraSun.shader" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\auraMoon.shader" Line="1" Column="1" />
-      <File FileName="Assets\texto.js" Line="1" Column="1" />
-      <File FileName="Assets\Tutorial1.js" Line="1" Column="1" />
-      <File FileName="Assets\Tutorial3.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cameraControl.js" Line="39" Column="20" />
       <File FileName="Assets\Scripts\virtualInput.js" Line="1" Column="1" />
-      <File FileName="Assets\Tutorial2.js" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\Fin.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\gameManager.js" Line="178" Column="2" />
+      <File FileName="Assets\Scripts\classPlayers.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sun.js" Line="97" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
