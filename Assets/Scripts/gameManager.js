@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var emulate : boolean;
+
 var maxDist : float = 10;
 
 var objMoon : GameObject;
@@ -34,7 +36,7 @@ function Start () {
 
 	scrMoon = (objMoon.GetComponent(moon) as moon).getScript();
 	scrSun = (objSun.GetComponent(sun) as sun).getScript();
-	
+	VirtualInput.setEmulate(emulate);
 	scrPlayer = scrMoon;
 	currPlayer = 0;
 	moonEnabled = true;
@@ -63,6 +65,23 @@ function Update ()
 		inputs[1] = false;
 		inputs[2] = false;
 	}
+	
+//	if(distB > maxDist*0.8)
+//	{
+//		linkControl.active= true;
+		if(!linked)
+		{
+			linkControl.transform.GetChild(0).particleSystem.startColor = Vector4(255,213,101,0)/255.0;
+			linkControl.transform.GetChild(0).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7);
+			linkControl.transform.GetChild(0).particleSystem.startSpeed = 0;
+			linkControl.transform.GetChild(0).particleSystem.emissionRate = 120;
+			
+			linkControl.transform.GetChild(1).particleSystem.startColor = Vector4(1,1,1,0);
+			linkControl.transform.GetChild(1).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7)*80/255;
+		}
+		
+//	}
+//	else linkControl.active= false;
 	
 	if(distB > maxDist)
 	{
@@ -149,7 +168,10 @@ function Update ()
 //			else 
 		}
 	}
-	else scrSun.stop = 1;
+	else 
+	{
+		scrSun.stop = 1;
+	}
 
 	
 	
@@ -214,10 +236,19 @@ function setLinked(val : boolean)
 
 		
 	}
-	else	linkControl.transform.position = objSun.transform.position;
+//	else	linkControl.transform.position = objSun.transform.position;
 
-	
-	linkControl.active = linked;
+	if(linked)
+	{
+//		linkControl.transform.GetChild(0).particleSystem.startColor = Vector4(1,0,0,0);
+		linkControl.transform.GetChild(0).particleSystem.emissionRate = 500;
+
+		linkControl.transform.GetChild(0).particleSystem.startSpeed = 1;
+		linkControl.transform.GetChild(0).particleSystem.startColor.a = 1;
+		linkControl.transform.GetChild(1).particleSystem.startColor = Vector4(255,60,0,80)/255.0;
+//		linkControl.transform.GetChild(1).particleSystem.startColor.a = 80.0/255;
+	}
+//	linkControl.active = linked;
 }
 
 function OnGUI()

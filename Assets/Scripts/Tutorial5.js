@@ -23,10 +23,19 @@ function FixedUpdate () {
 		obj.transform.FindChild("Dedo").FindChild("Particle System").active = false;
 		obj.transform.FindChild("Dedo").FindChild("Texto").active = false;
 		
+
+		
 		if(timer < -1) GameObject.Destroy(gameObject.transform.parent.gameObject);
 	}
+	
+			gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Luna").transform.position + Vector3(-9,3.5,-5);
+
 //	Debug.Log(VirtualInput.touchPlayer());
-	if(VirtualInput.onClick()) if(VirtualInput.touchPlayer() == "SunInput")  desvanecer = true;
+	if(VirtualInput.onClick())
+	{
+		if(VirtualInput.touchPlayer() == "SunInput" || VirtualInput.getPosInput().y > Screen.height*0.5)  
+		desvanecer = true;
+	}	
 }
 
 function OnTriggerEnter(Col : Collider)

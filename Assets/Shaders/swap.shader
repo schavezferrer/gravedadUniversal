@@ -5,6 +5,7 @@
 		_alpha ("alpha", Range(0,2)) = 0
 		_alpha2 ("alpha2", Range(0,2)) = 0
 		_offset ("Ofsset", float) = 0
+		_gaussEnabled ("_gaussEnabled", float) = 0
 	}
 	SubShader {
 		Tags {"Queue" = "Transparent+1000" "RenderType"="Transparent" "IgnoreProjector"="True"}
@@ -26,6 +27,7 @@
 			fixed4 _Tint;
 			half _Ypos;
 			half _offset;
+			half _gaussEnabled;
 			
 			struct v2f {
 		    float4  pos : SV_POSITION;
@@ -79,7 +81,7 @@
 //					col = fixed4(0,0,1,0);
 //					col.w = _alpha;
 //				}
-				col += + fixed4(1,1,1,1)*gauss;
+				col += + fixed4(1,1,1,1)*gauss*_gaussEnabled;
 				return col;
 			}
 			

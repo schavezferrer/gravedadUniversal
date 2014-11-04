@@ -1,13 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gameManager.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tutorial7.js">
     <Files>
-      <File FileName="Assets\Scripts\cameraControl.js" Line="39" Column="20" />
-      <File FileName="Assets\Scripts\virtualInput.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cameraControl.js" Line="20" Column="5" />
       <File FileName="Assets\Scripts\Fin.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\gameManager.js" Line="178" Column="2" />
-      <File FileName="Assets\Scripts\classPlayers.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\sun.js" Line="97" Column="15" />
+      <File FileName="Assets\Scripts\Tutorial7.js" Line="47" Column="64" />
+      <File FileName="Assets\Scripts\virtualInput.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\classPlayers.js" Line="69" Column="60" />
+      <File FileName="Assets\Shaders\swap.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\gameManager.js" Line="267" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

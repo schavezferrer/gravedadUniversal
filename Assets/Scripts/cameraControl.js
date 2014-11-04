@@ -17,8 +17,8 @@ function Start () {
 function FixedUpdate () {
 
 	inputs = VirtualInput.UpdateInput();	
-	if(inputs[0]) offset.x = -1;
-	else if(inputs[1]) offset.x = 1;
+//	if(inputs[0]) offset.x = -1;
+//	else if(inputs[1]) offset.x = 1;
 	
 	pos.x =  (moon.position.x + sun.position.x)/2;
 	pos.y =  (moon.position.y + sun.position.y)/2;
@@ -29,7 +29,7 @@ function FixedUpdate () {
 	{
 		pos.z = -10;
 //		Camera.main.orthographicSize = distance*0.2;
-		if(distance*0.4 <  9) distance = 9;
+		if(distance*0.4 <  8) distance = 8;
 		else distance *= 0.4;
 		Camera.main.orthographicSize = distance;
 

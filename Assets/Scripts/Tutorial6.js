@@ -42,7 +42,7 @@ function FixedUpdate () {
 		var col2 : Vector4 = obj.renderer.material.GetVector("_TintColor");
 		if (col2[3] < 92.0/255) col2[3] += Time.fixedDeltaTime;
 		obj.renderer.material.SetVector("_TintColor",col2);// -= Time.fixedDeltaTime;
-		
+		gameObject.transform.parent.FindChild("Dedo").position = Camera.main.ViewportToWorldPoint(Vector3(0.2,0.9,5));
 		obj.transform.FindChild("Dedo").active = true;
 		obj.transform.FindChild("Dedo").FindChild("Particle System").active = true;
 		obj.transform.FindChild("Dedo").FindChild("Texto").active = true;

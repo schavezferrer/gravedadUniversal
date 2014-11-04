@@ -60,7 +60,7 @@
 				float wd = _width*(1-i.uv.y); 
 				if(dist >thres -wd && dist  < thres + wd )
 				{
-					col.w = i.uv.y;
+					col.w = pow(i.uv.y,2);
 				}
 	
 				return col;

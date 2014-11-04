@@ -81,7 +81,7 @@ class Players
 		
 		if(inputs[2] && isGrounded && type == 0) 
 		{
-			player.rigidbody.AddForce(normal*3, ForceMode.Impulse);
+			player.rigidbody.AddForce(normal*3.5, ForceMode.Impulse);
 		}
 	}
 	function setInputs(inp : boolean[]) {inputs = inp;}
