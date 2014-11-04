@@ -20,6 +20,8 @@ static public class NGUITools
 	static bool mLoaded = false;
 	static float mGlobalVolume = 1f;
 
+	static public AudioSource SoundSource; 
+
 	/// <summary>
 	/// Globally accessible volume affecting all sounds played via NGUITools.PlaySound().
 	/// </summary>
@@ -107,6 +109,14 @@ static public class NGUITools
 
 			if (mListener != null && mListener.enabled && NGUITools.GetActive(mListener.gameObject))
 			{
+				// use the static member if it's set, otherwise use the original behavior to find/create one
+				if (SoundSource == null)
+				{
+					SoundSource = mListener.audio;
+					if (SoundSource == null) SoundSource = mListener.gameObject.AddComponent<AudioSource>();
+					SoundSource.pitch = pitch;
+				}
+
 				AudioSource source = mListener.audio;
 				if (source == null) source = mListener.gameObject.AddComponent<AudioSource>();
 				source.priority = 50;

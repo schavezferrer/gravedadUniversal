@@ -195,7 +195,9 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Scripts\Managers\gameController.cs" />
+     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameControllerManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\OptionsPreferencesManager.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\ExitGame.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\LoadScene.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\Singleton.cs" />
