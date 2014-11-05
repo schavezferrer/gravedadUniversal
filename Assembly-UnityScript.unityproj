@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Tutorial6.js" />
      <Compile Include="Assets\Scripts\Tutorial7.js" />
      <Compile Include="Assets\Scripts\Tutorial8.js" />
+     <Compile Include="Assets\Scripts\Tutorial9.js" />
      <Compile Include="Assets\Scripts\attraction.js" />
      <Compile Include="Assets\Scripts\camera.js" />
      <Compile Include="Assets\Scripts\cameraControl.js" />
