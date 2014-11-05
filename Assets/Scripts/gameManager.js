@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+var startFeedback : GameObject;
+var targetPostStart : GameObject;
+
 var emulate : boolean;
 
 var maxDist : float = 10;
@@ -31,6 +34,9 @@ private var sunEnabled : boolean;
 private var swapEnabled : boolean;
 
 private var timerEnd : float;
+private var timerStart : float;
+
+private var starting : boolean;
 
 function Start () {
 
@@ -41,7 +47,7 @@ function Start () {
 	currPlayer = 0;
 	moonEnabled = true;
 	sunEnabled = true;
-	inputs = VirtualInput.UpdateInput();	
+	inputs = VirtualInput.UpdateInput(scrPlayer);	
 	scrMoon.setInputs(inputs);
 	scrSun.setInputs(inputs);
 	swapEnabled = Application.loadedLevelName != "Level1" && Application.loadedLevelName != "Level2";	
@@ -50,149 +56,182 @@ function Start () {
 
 	objSun.transform.FindChild("TagControl").active = false;
 	objMoon.transform.FindChild("TagControl").active = true;
+	starting = true;
 
 }
 
 function Update () 
 {
-	inputs = VirtualInput.UpdateInput();
-	var distB = Vector3.Distance(objMoon.transform.position,objSun.transform.position);
-
-	
-	if(VirtualInput.touchPlayer() || iniSwap)
+	if(starting)
 	{
-		inputs[0] = false;
-		inputs[1] = false;
-		inputs[2] = false;
-	}
-	
-//	if(distB > maxDist*0.8)
-//	{
-//		linkControl.active= true;
-		if(!linked)
+		timerStart += Time.deltaTime;
+		if(timerStart < 1) (startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "Starting . . .";
+		else if(timerStart >= 1 && timerStart <2) (startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "Ready ! !";
+		else if(timerStart >= 2) 
 		{
-			linkControl.transform.GetChild(0).particleSystem.startColor = Vector4(255,213,101,0)/255.0;
-			linkControl.transform.GetChild(0).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7);
-			linkControl.transform.GetChild(0).particleSystem.startSpeed = 0;
-			linkControl.transform.GetChild(0).particleSystem.emissionRate = 120;
-			
-			linkControl.transform.GetChild(1).particleSystem.startColor = Vector4(1,1,1,0);
-			linkControl.transform.GetChild(1).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7)*80/255;
+			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "Let's Go !";
+			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).color.a -= Time.deltaTime*1.5;
+			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,1 - (timerStart-2)*1.5));
+			if(targetPostStart != null) targetPostStart.active = true;
 		}
-		
-//	}
-//	else linkControl.active= false;
-	
-	if(distB > maxDist)
-	{
-		var dir : Vector2; 
-		if(currPlayer == 0)
+				
+		if(timerStart > 3) 
 		{
-			dir = Vector2(objSun.transform.position.x,objSun.transform.position.y) - 
-				  Vector2(objMoon.transform.position.x,objMoon.transform.position.y);
 			
-			scrMoon.stop = 0;
-			
-			if(dir.x < 0 && inputs[1]) 
-			{
-				inputs[1] = false;
-				inputs[2] = false;
-				objMoon.rigidbody.velocity.x = 0;
-
-			}
-			else if(dir.x > 0 && inputs[0]) 
-			{
-				inputs[0] = false;
-				inputs[2] = false;
-
-			}
-			else if(dir.x < 0 && inputs[0] )
-			{
-				scrMoon.stop = 1;
-			}
-			else if(dir.x > 0 && inputs[1] )
-			{
-				scrMoon.stop = 1;
-			}
-			else if(!inputs[0] && !inputs[1])
-			{
-				scrMoon.stop = 1;
-			}
-			
-			
-			if(objMoon.rigidbody.velocity.x>0 || objMoon.rigidbody.velocity.x < 0)
-			{
-				objMoon.rigidbody.velocity.x = 0;
-			}
-//			else 
-		}
-		
-		if(currPlayer == 1)
-		{
-			dir = Vector2(objMoon.transform.position.x,objMoon.transform.position.y) - 
-				  Vector2(objSun.transform.position.x,objSun.transform.position.y);
-			
-			scrSun.stop = 0;
-			
-			if(dir.x < 0 && inputs[1]) 
-			{
-				inputs[1] = false;
-				inputs[2] = false;
-				objSun.rigidbody.velocity.x = 0;
-
-			}
-			else if(dir.x > 0 && inputs[0]) 
-			{
-				inputs[0] = false;
-				inputs[2] = false;
-
-			}
-			else if(dir.x < 0 && inputs[0] )
-			{
-				scrMoon.stop = 1;
-			}
-			else if(dir.x > 0 && inputs[1] )
-			{
-				scrMoon.stop = 1;
-			}
-			else if(!inputs[0] && !inputs[1])
-			{
-				scrMoon.stop = 1;
-			}
-			
-			
-			if(objSun.rigidbody.velocity.x>0 || objSun.rigidbody.velocity.x < 0)
-			{
-				objSun.rigidbody.velocity.x = 0;
-			}
-//			else 
+			starting = false;
 		}
 	}
-	else 
+	else
 	{
-		scrSun.stop = 1;
-	}
+		inputs = VirtualInput.UpdateInput(scrPlayer);
+		var distB = Vector3.Distance(objMoon.transform.position,objSun.transform.position);
 
-	
-	
-	
-	if((moonEnabled && currPlayer == 0) || (sunEnabled && currPlayer == 1) ) scrPlayer.setInputs(inputs);
-	if (!moonEnabled) scrMoon.setInputs(VirtualInput.newInputs());
-	if (!sunEnabled) scrSun.setInputs(VirtualInput.newInputs());
+		
+		if(VirtualInput.touchPlayer() || iniSwap)
+		{
+			inputs[0] = false;
+			inputs[1] = false;
+			inputs[2] = false;
+		}
+		
+	//	if(distB > maxDist*0.8)
+	//	{
+	//		linkControl.active= true;
+			if(!linked)
+			{
+				linkControl.transform.GetChild(0).particleSystem.startColor = Vector4(255,213,101,0)/255.0;
+				linkControl.transform.GetChild(0).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7);
+				linkControl.transform.GetChild(0).particleSystem.startSpeed = 0;
+				linkControl.transform.GetChild(0).particleSystem.emissionRate = 120;
+				
+				linkControl.transform.GetChild(1).particleSystem.startColor = Vector4(1,1,1,0);
+				linkControl.transform.GetChild(1).particleSystem.startColor.a = (distB - maxDist*0.7)/(maxDist-maxDist*0.7)*80/255;
+			}
+			
+	//	}
+	//	else linkControl.active= false;
+		
+		if(distB > maxDist)
+		{
+			var dir : Vector2; 
+			if(currPlayer == 0)
+			{
+				dir = Vector2(objSun.transform.position.x,objSun.transform.position.y) - 
+					  Vector2(objMoon.transform.position.x,objMoon.transform.position.y);
+				
+				scrMoon.stop = 0;
+				
+				if(dir.x < 0 && inputs[1]) 
+				{
+					inputs[1] = false;
+					inputs[2] = false;
+					objMoon.rigidbody.velocity.x = 0;
 
-	changeControl();
-	
-	if(endMoon && endSun)
-	{
-		moonEnabled = false;
-		sunEnabled = false;
+				}
+				else if(dir.x > 0 && inputs[0]) 
+				{
+					inputs[0] = false;
+					inputs[2] = false;
+
+				}
+				else if(dir.x < 0 && inputs[0] )
+				{
+					scrMoon.stop = 1;
+				}
+				else if(dir.x > 0 && inputs[1] )
+				{
+					scrMoon.stop = 1;
+				}
+				else if(!inputs[0] && !inputs[1])
+				{
+					scrMoon.stop = 1;
+				}
+				
+				
+				if(objMoon.rigidbody.velocity.x>0 || objMoon.rigidbody.velocity.x < 0)
+				{
+					objMoon.rigidbody.velocity.x = 0;
+				}
+	//			else 
+			}
+			
+			if(currPlayer == 1)
+			{
+				dir = Vector2(objMoon.transform.position.x,objMoon.transform.position.y) - 
+					  Vector2(objSun.transform.position.x,objSun.transform.position.y);
+				
+				scrSun.stop = 0;
+				
+				if(dir.x < 0 && inputs[1]) 
+				{
+					inputs[1] = false;
+					inputs[2] = false;
+					objSun.rigidbody.velocity.x = 0;
+
+				}
+				else if(dir.x > 0 && inputs[0]) 
+				{
+					inputs[0] = false;
+					inputs[2] = false;
+
+				}
+				else if(dir.x < 0 && inputs[0] )
+				{
+					scrMoon.stop = 1;
+				}
+				else if(dir.x > 0 && inputs[1] )
+				{
+					scrMoon.stop = 1;
+				}
+				else if(!inputs[0] && !inputs[1])
+				{
+					scrMoon.stop = 1;
+				}
+				
+				
+				if(objSun.rigidbody.velocity.x>0 || objSun.rigidbody.velocity.x < 0)
+				{
+					objSun.rigidbody.velocity.x = 0;
+				}
+	//			else 
+			}
+		}
+		else 
+		{
+			scrSun.stop = 1;
+		}
+
+		changeControl();
 		
-		timerEnd += Time.deltaTime;
+		if(endMoon && endSun)
+		{
+			moonEnabled = false;
+			sunEnabled = false;
+			
+			timerEnd += Time.deltaTime;
+			
+			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "DONE!";
+			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).color.a += Time.deltaTime*1.5;
+			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,timerEnd*1.5));
+			
+			if(timerEnd > 2) Application.LoadLevel(Application.loadedLevel+1);		
+		}
+		else
+		{
+			timerEnd = 0;
+			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).color.a = 0;
+			if(!endMoon) moonEnabled = true;
+			if(!endSun) sunEnabled = true;
+			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,0));
+		}
 		
-		if(timerEnd > 2) Application.LoadLevel(Application.loadedLevel+1);		
+		if(iniSwap) swap();
+		
+		
+		if((moonEnabled && currPlayer == 0) || (sunEnabled && currPlayer == 1) ) scrPlayer.setInputs(inputs);
+		if (!moonEnabled) scrMoon.setInputs(VirtualInput.newInputs());
+		if (!sunEnabled) scrSun.setInputs(VirtualInput.newInputs());
 	}
-	
-	if(iniSwap) swap();
 
 	
 }

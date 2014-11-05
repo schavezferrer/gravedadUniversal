@@ -7,6 +7,8 @@ var pos : Vector3;
 var maxX : float; 
 var minX : float; 
 
+var minSize : float;
+
 private var inputs : boolean[];
 
 function Start () {
@@ -16,7 +18,7 @@ function Start () {
 
 function FixedUpdate () {
 
-	inputs = VirtualInput.UpdateInput();	
+//	inputs = VirtualInput.UpdateInput();	
 //	if(inputs[0]) offset.x = -1;
 //	else if(inputs[1]) offset.x = 1;
 	
@@ -29,7 +31,7 @@ function FixedUpdate () {
 	{
 		pos.z = -10;
 //		Camera.main.orthographicSize = distance*0.2;
-		if(distance*0.4 <  8) distance = 8;
+		if(distance*0.4 <  minSize) distance = minSize;
 		else distance *= 0.4;
 		Camera.main.orthographicSize = distance;
 

@@ -3,7 +3,7 @@
 class Players
 {
 	protected var inputs : boolean[];
-	protected var player : GameObject;
+	var player : GameObject;
 	protected var isGrounded : boolean;
 	private var velocity : Vector3; 
 	protected var normal : Vector3;
@@ -51,10 +51,13 @@ class Players
 		if(isGrounded)
 		{
 			var sign : int;
+			var maxVel : float;
+			if(type == 0) maxVel = 15;
+			else if(type == 1) maxVel = 10;
 			if(inverDir) sign = -1;
 			else sign = 1;
-			if(inputs[0] && player.rigidbody.angularVelocity.z < 200) player.rigidbody.AddTorque(sign*Vector3.forward*100); 
-			else if(inputs[1] && player.rigidbody.angularVelocity.z > -200) player.rigidbody.AddTorque(-sign*Vector3.forward*100); 
+			if(inputs[0] && player.rigidbody.angularVelocity.z < maxVel) player.rigidbody.AddTorque(sign*Vector3.forward*100); 
+			else if(inputs[1] && player.rigidbody.angularVelocity.z > -maxVel) player.rigidbody.AddTorque(-sign*Vector3.forward*100); 
 			else  
 			{
 				if(Mathf.Abs(player.rigidbody.angularVelocity.z)< 0.1) player.rigidbody.angularVelocity.z =0;
