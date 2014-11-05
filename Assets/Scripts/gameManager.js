@@ -38,6 +38,8 @@ private var timerStart : float;
 
 private var starting : boolean;
 
+private var far : boolean;
+
 function Start () {
 
 	scrMoon = (objMoon.GetComponent(moon) as moon).getScript();
@@ -114,6 +116,7 @@ function Update ()
 		if(distB > maxDist)
 		{
 			var dir : Vector2; 
+			far = true;
 			if(currPlayer == 0)
 			{
 				dir = Vector2(objSun.transform.position.x,objSun.transform.position.y) - 
@@ -198,6 +201,7 @@ function Update ()
 		}
 		else 
 		{
+			far = false;
 			scrSun.stop = 1;
 		}
 
@@ -234,6 +238,11 @@ function Update ()
 	}
 
 	
+}
+
+function getFar() :  boolean
+{
+	return far;
 }
 function setSwapEnabled(val : boolean)
 {
