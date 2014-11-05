@@ -2,6 +2,7 @@
 
 var startFeedback : GameObject;
 var targetPostStart : GameObject;
+var guia : GameObject;
 
 var emulate : boolean;
 
@@ -59,6 +60,11 @@ function Start () {
 	objSun.transform.FindChild("TagControl").active = false;
 	objMoon.transform.FindChild("TagControl").active = true;
 	starting = true;
+	
+	
+	guia.transform.parent = objMoon.transform;
+	guia.transform.localPosition = Vector3(0,0,-2);
+	(guia.GetComponent(apuntarTarget) as apuntarTarget).setTarget("Moon");
 
 }
 
@@ -465,6 +471,10 @@ function changeControl()
 				scrMoon.setActive(false);
 				scrSun.setActive(true);
 				objMoon.rigidbody.angularVelocity.z =0;
+				
+				guia.transform.parent = objSun.transform;
+				guia.transform.localPosition = Vector3(0,0,-2);
+				(guia.GetComponent(apuntarTarget) as apuntarTarget).setTarget("Sun");
 
 			}
 			if(target == "MoonInput" && moonEnabled)
@@ -486,6 +496,11 @@ function changeControl()
 				scrMoon.setActive(true);
 				scrSun.setActive(false);		
 				objSun.rigidbody.angularVelocity.z =0;
+				
+				guia.transform.parent = objMoon.transform;
+				guia.transform.localPosition = Vector3(0,0,-2);
+				(guia.GetComponent(apuntarTarget) as apuntarTarget).setTarget("Moon");
+				
 				
 				setLinked(false);
 			}
