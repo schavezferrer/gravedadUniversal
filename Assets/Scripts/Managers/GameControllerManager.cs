@@ -31,7 +31,6 @@ public class GameControllerManager : Singleton<GameControllerManager> {
 
 	// Use this for initialization
 	void Start () {
-		print ("GAME CONTROLLER START");
 	}
 	
 	// Update is called once per frame

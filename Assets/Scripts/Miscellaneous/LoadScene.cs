@@ -26,20 +26,20 @@ public class LoadScene : MonoBehaviour {
 	}
 
 	IEnumerator Load () {
-		//AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
-		
-//		if ( m_ShowLoading )
-//			Application.LoadLevelAdditive("Loading");
-
-		print ("esperem ... " + m_Time.ToString());
-		print(Time.time);
-		yield return new WaitForSeconds(5);
-		print(Time.time);
-
-		Application.LoadLevel(m_SceneToLoad);
-
-//		AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
-		//yield return async;
+//		//AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
+//		
+////		if ( m_ShowLoading )
+////			Application.LoadLevelAdditive("Loading");
+//
+//		print ("esperem ... " + m_Time.ToString());
+//		print(Time.time);
+//		yield return new WaitForSeconds(5);
+//		print(Time.time);
+//
+//		Application.LoadLevel(m_SceneToLoad);
+//
+		AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
+		yield return async;
 		Debug.Log("Loading complete");
 	}
 

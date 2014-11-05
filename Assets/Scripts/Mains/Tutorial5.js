@@ -14,9 +14,9 @@ function FixedUpdate () {
 
 	if(desvanecer)
 	{
-		timer -= Time.fixedDeltaTime;
+		timer -= Time.fixedDeltaTime*1.5;
 		var col : Vector4 = obj.renderer.material.GetVector("_TintColor");
-		col[3] -= Time.fixedDeltaTime;
+		col[3] -= Time.fixedDeltaTime*1.5;
 		obj.renderer.material.SetVector("_TintColor",col);// -= Time.fixedDeltaTime;
 		
 		obj.transform.FindChild("Dedo").active = false;
@@ -28,14 +28,14 @@ function FixedUpdate () {
 		if(timer < -1) GameObject.Destroy(gameObject.transform.parent.gameObject);
 	}
 	
-			gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Luna").transform.position + Vector3(-9,3.5,-5);
+		gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Luna").transform.position + Vector3(-9,3.5,-5);
 
 //	Debug.Log(VirtualInput.touchPlayer());
-	if(VirtualInput.onClick())
-	{
-		if(VirtualInput.touchPlayer() == "SunInput" || VirtualInput.getPosInput().y > Screen.height*0.5)  
-		desvanecer = true;
-	}	
+	
+	if( (VirtualInput.onClick() && VirtualInput.touchPlayer() == "SunInput") || 
+		 VirtualInput.onJumping() ) desvanecer = true; 
+	
+	
 }
 
 function OnTriggerEnter(Col : Collider)

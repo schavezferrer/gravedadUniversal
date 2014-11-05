@@ -14,9 +14,9 @@ function FixedUpdate () {
 
 	if(desvanecer)
 	{
-		timer -= Time.fixedDeltaTime;
+		timer -= Time.fixedDeltaTime*1.5;
 		var col : Vector4 = obj.renderer.material.GetVector("_TintColor");
-		col[3] -= Time.fixedDeltaTime;
+		col[3] -= Time.fixedDeltaTime*1.5;
 		obj.renderer.material.SetVector("_TintColor",col);// -= Time.fixedDeltaTime;
 		
 		obj.transform.FindChild("Dedo").active = false;

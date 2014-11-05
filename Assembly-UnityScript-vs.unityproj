@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{9168C25C-E8C5-8C24-BAF4-B9EDFEC424A6}</ProjectGuid>
+	<ProjectGuid>{F14F6A56-69D2-9F50-30FD-A192717BA0BB}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_2;UNITY_4_5;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_0;UNITY_4_5;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -50,22 +50,22 @@
      <Compile Include="Assets\Scripts\Cameras\cameraControl.js" />
      <Compile Include="Assets\Scripts\Fin.js" />
      <Compile Include="Assets\Scripts\Ice.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial1.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial2.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial3.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial4.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial5.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial6.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial7.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial8.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial9.js" />
      <Compile Include="Assets\Scripts\Managers\gameManager.js" />
      <Compile Include="Assets\Scripts\Mobil.js" />
      <Compile Include="Assets\Scripts\Physic\attraction.js" />
-     <Compile Include="Assets\Scripts\Tutorial1.js" />
-     <Compile Include="Assets\Scripts\Tutorial2.js" />
-     <Compile Include="Assets\Scripts\Tutorial3.js" />
-     <Compile Include="Assets\Scripts\Tutorial4.js" />
-     <Compile Include="Assets\Scripts\Tutorial5.js" />
-     <Compile Include="Assets\Scripts\Tutorial6.js" />
-     <Compile Include="Assets\Scripts\Tutorial7.js" />
-     <Compile Include="Assets\Scripts\Tutorial8.js" />
-     <Compile Include="Assets\Scripts\Tutorial9.js" />
+     <Compile Include="Assets\Scripts\Physic\gravity.js" />
+     <Compile Include="Assets\Scripts\Respawns\death.js" />
      <Compile Include="Assets\Scripts\classPlayers.js" />
-     <Compile Include="Assets\Scripts\death.js" />
      <Compile Include="Assets\Scripts\fire.js" />
-     <Compile Include="Assets\Scripts\gravity.js" />
      <Compile Include="Assets\Scripts\linkControl.js" />
      <Compile Include="Assets\Scripts\moon.js" />
      <Compile Include="Assets\Scripts\sun.js" />
@@ -134,12 +134,12 @@
      <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
      <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Sebas/Documents/Gravedad/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>D:/BACKUPS/VIDEOJOCS/HOUSE OF DEVS/Sun&Moon/Source/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{32BC8E73-E8D0-16D7-5ED0-76AAB03E04E1}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{B6FCA452-E620-D059-605D-5DFCB852AFD7}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
