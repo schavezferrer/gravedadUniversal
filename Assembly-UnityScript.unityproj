@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Fin.js" />
      <Compile Include="Assets\Scripts\Ice.js" />
      <Compile Include="Assets\Scripts\Mains\Tutorial1.js" />
+     <Compile Include="Assets\Scripts\Mains\Tutorial10.js" />
      <Compile Include="Assets\Scripts\Mains\Tutorial2.js" />
      <Compile Include="Assets\Scripts\Mains\Tutorial3.js" />
      <Compile Include="Assets\Scripts\Mains\Tutorial4.js" />

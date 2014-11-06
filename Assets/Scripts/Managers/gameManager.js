@@ -219,7 +219,8 @@ function Update ()
 			sunEnabled = false;
 			
 			timerEnd += Time.deltaTime;
-			
+			startFeedback.transform.GetChild(0).position = Camera.main.transform.position + Camera.main.transform.forward*5;
+		
 			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "DONE!";
 			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).color.a += Time.deltaTime*1.5;
 			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,timerEnd*1.5));

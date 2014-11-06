@@ -2,6 +2,7 @@
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Tint ("Tint", Color) = (1,1,1,1)
+		_Tint2 ("Tint2", Color) = (1,1,1,1)
 		_alpha ("alpha", Range(0,2)) = 0
 		_alpha2 ("alpha2", Range(0,2)) = 0
 		_offset ("Ofsset", float) = 0
@@ -25,6 +26,7 @@
 			half _alpha;
 			half _alpha2;
 			fixed4 _Tint;
+			fixed4 _Tint2;
 			half _Ypos;
 			half _offset;
 			half _gaussEnabled;
@@ -35,7 +37,21 @@
 		  
 			};
        
-	
+			half planarWave(half2 p)
+			{
+				float A = 1;
+				float T = 1;
+				float lambda = 0.1;
+				float2 k = normalize(float2(0,1))*3.1413/lambda;
+				float w = 2*3.1413/T;
+				float fi = 0;
+				float2 l = p;
+				float t = _Time[1];
+			  	float wave = A*cos(dot(k,l)-w*t+fi);
+		   
+		   		return wave;
+			}
+			
 	        float4 _MainTex_ST; // nose
 
 			v2f vert (appdata_base v)
@@ -81,7 +97,8 @@
 //					col = fixed4(0,0,1,0);
 //					col.w = _alpha;
 //				}
-				col += + fixed4(1,1,1,1)*gauss*_gaussEnabled;
+//				col += + fixed4(1,1,1,1)*gauss*_gaussEnabled;
+				col += + _Tint2*planarWave(i.uv)*col.w*_gaussEnabled;
 				return col;
 			}
 			
