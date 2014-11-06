@@ -11,7 +11,6 @@ public class OptionsPreferencesManager : MonoBehaviour {
 	#region MONOBEHAVIOUR_METHODS
 	// Use this for initialization
 	void Start () {
-		print ("OPTIONS START");
 		LoadPreferences();
 		m_LoadedPreferences = true;
 	}
@@ -29,8 +28,6 @@ public class OptionsPreferencesManager : MonoBehaviour {
 
 	public void LoadPreferences () {
 		// Guardo el so
-		print ("LOADPREFERENCES");
-
 		AudioManager.Instance.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0f);
 		AudioManager.Instance.soundVolume = PlayerPrefs.GetFloat("FxVolume", 1f);
 		AudioManager.Instance.voiceVolume = PlayerPrefs.GetFloat("VoiceVolume", 0f);

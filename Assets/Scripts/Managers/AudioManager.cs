@@ -33,7 +33,6 @@ public class AudioManager : Singleton<AudioManager> {
 
 	// Use this for initialization
 	void Start () {
-		print ("MUSIC START");
 		if ( m_Music.Count > 0 ) {
 			audio.clip = m_Music[0];
 			audio.loop = true;
