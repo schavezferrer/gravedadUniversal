@@ -33,14 +33,14 @@ public class LoadScene : MonoBehaviour {
 //
 //		print ("esperem ... " + m_Time.ToString());
 //		print(Time.time);
-//		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(m_Time);
 //		print(Time.time);
-//
-//		Application.LoadLevel(m_SceneToLoad);
-//
-		AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
-		yield return async;
-		Debug.Log("Loading complete");
+		Application.LoadLevel(m_SceneToLoad);
+
+		// Nomes per versio PRO
+		//AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
+		//yield return async;
+		//Debug.Log("Escena carregada");
 	}
 
 //	public void loadOtherRoot () {
@@ -49,28 +49,6 @@ public class LoadScene : MonoBehaviour {
 //	
 //	public void loadOtherRootWithTime (float _Time) {
 //		Invoke ("LoadOtherRoot", _Time);
-//	}
-//
-//	IEnumerator LoadOtherRoot () {
-//		if ( m_ShowLoading )
-//			Application.LoadLevelAdditive("Loading");
-//
-//		yield return new WaitForSeconds(m_Time);
-//		if ( m_RootToLoad == SceneManager.Instance.m_Barri.name ) {
-//			print ( "LOAD el barri");
-//			if ( SceneManager.Instance.m_Menu == null ) print ("ERROR!! LOAD MENU");
-//			SceneManager.Instance.m_Barri.SetActive(true);
-//			SceneManager.Instance.m_Menu.SetActive(false);
-//			SceneManager.Instance.LastSceneLoaded = m_Barri.name;
-//		}
-//		else { 
-//			print ( "LOAD el Menu");
-//			if ( SceneManager.Instance.m_Menu == null ) print ("ERROR!! LOAD MENU");
-//			SceneManager.Instance.m_Menu.SetActive(true);
-//			SceneManager.Instance.m_Barri.SetActive(false);
-//			SceneManager.Instance.LastSceneLoaded = m_Menu.name;
-//		}
-//
 //	}
 
 //	public void PreAnimacio () {
