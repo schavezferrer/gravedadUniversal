@@ -88,6 +88,9 @@ function Update ()
 			
 			starting = false;
 		}
+		
+		scrMoon.setInputs(VirtualInput.newInputs());
+		scrSun.setInputs(VirtualInput.newInputs());
 	}
 	else
 	{
