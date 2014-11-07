@@ -312,6 +312,8 @@ function OnGUI()
 	{
 		if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
 		{
+			audio.enabled= true;
+			audio.Play();
 			iniSwap = true;
 			phase = 0;
 			posSunSwap  = objSun.transform.position;

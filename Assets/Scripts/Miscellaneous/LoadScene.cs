@@ -26,21 +26,20 @@ public class LoadScene : MonoBehaviour {
 	}
 
 	IEnumerator Load () {
-//		//AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
-//		
-////		if ( m_ShowLoading )
-////			Application.LoadLevelAdditive("Loading");
-//
-//		print ("esperem ... " + m_Time.ToString());
-//		print(Time.time);
-		yield return new WaitForSeconds(m_Time);
-//		print(Time.time);
-		Application.LoadLevel(m_SceneToLoad);
+//		if ( m_ShowLoading )
+//			Application.LoadLevelAdditive("Loading");
 
 		// Nomes per versio PRO
-		//AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
-		//yield return async;
-		//Debug.Log("Escena carregada");
+		if ( UnityEditorInternal.InternalEditorUtility.HasPro() ) {
+			AsyncOperation async = Application.LoadLevelAsync(m_SceneToLoad);
+			yield return async;
+			Debug.Log("Escena carregada");
+		}
+		else {
+			yield return new WaitForSeconds(m_Time);
+			Application.LoadLevel(m_SceneToLoad);
+			Debug.Log("Escena carregada");
+		}
 	}
 
 //	public void loadOtherRoot () {
