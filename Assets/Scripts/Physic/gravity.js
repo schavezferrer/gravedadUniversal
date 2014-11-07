@@ -5,7 +5,7 @@ static var m_AlreadyAttracted : boolean;
 
 function Start () {
 
-	m_AlreadyAttracted = false;
+//	m_AlreadyAttracted = false;
 
 }
 
@@ -36,9 +36,9 @@ function OnTriggerEnter(col : Collider)
 		(col.gameObject.GetComponent(moon) as moon).getScript().setGravity(dir*9.8-Physics.gravity);
 		(col.gameObject.GetComponent(moon) as moon).getScript().inverDir = invertirDireccion;
 
-		audio.enabled = true;
-		audio.Play();
-		m_AlreadyAttracted = true;
+//		audio.enabled = true;
+//		audio.Play();
+//		m_AlreadyAttracted = true;
 	}
 }
 
@@ -53,6 +53,6 @@ function OnTriggerExit(col : Collider)
 		
 		(col.gameObject.GetComponent(moon) as moon).getScript().inverDir = false;
 		
-		m_AlreadyAttracted = false;
+//		m_AlreadyAttracted = false;
 	}
 }

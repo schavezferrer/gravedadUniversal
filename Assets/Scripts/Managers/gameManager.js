@@ -61,7 +61,7 @@ function Start () {
 	objMoon.transform.FindChild("TagControl").active = true;
 	starting = true;
 	
-	
+	startFeedback.active = true;
 	guia.transform.parent = objMoon.transform;
 	guia.transform.localPosition = Vector3(0,0,-2);
 	(guia.GetComponent(apuntarTarget) as apuntarTarget).setTarget("Moon");

@@ -1,13 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\swap.shader">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="D:\Juegos propios\DolorsAleu\Assets\Shaders\silueta.shader">
     <Files>
-      <File FileName="Assets\Scripts\Physic\attraction.js" Line="26" Column="51" />
-      <File FileName="..\Test\Assets\invi.js" Line="1" Column="1" />
-      <File FileName="..\Test\Assets\Editor\Invisible.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mains\Tutorial5.js" Line="27" Column="3" />
-      <File FileName="Assets\Shaders\swap.shader" Line="101" Column="44" />
-      <File FileName="Assets\Shaders\attracted.shader" Line="47" Column="5" />
+      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Shaders\silueta.shader" Line="1" Column="1" />
+      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Scripts\Isometrico\SwitchDepth.js" Line="1" Column="1" />
+      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Shaders\UltraShader.shader" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
