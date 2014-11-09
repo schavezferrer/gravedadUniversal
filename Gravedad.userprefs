@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="D:\Juegos propios\DolorsAleu\Assets\Shaders\silueta.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\gameManager.js">
     <Files>
-      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Shaders\silueta.shader" Line="1" Column="1" />
-      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Scripts\Isometrico\SwitchDepth.js" Line="1" Column="1" />
-      <File FileName="D:\Juegos propios\DolorsAleu\Assets\Shaders\UltraShader.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\gameManager.js" Line="318" Column="3" />
+      <File FileName="Assets\Scripts\Physic\gravity.js" Line="27" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
