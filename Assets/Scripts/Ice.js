@@ -20,5 +20,18 @@ function OnTriggerEnter(col : Collider)
 		Application.LoadLevel(Application.loadedLevelName);
 	}
 
+	if(col.name == "Luna" )
+	{
+		gm.setLinked(true);
+	}
+
+}
+
+function OnTriggerExit(col : Collider)
+{
+	if(col.name == "Luna" )
+	{
+		gm.setLinked(false);
+	}
 
 }

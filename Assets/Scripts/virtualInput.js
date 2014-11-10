@@ -12,11 +12,54 @@ static class VirtualInput
 		{
 			if(Input.touchCount)
 			{
-				inputs[0] = Input.touches[0].position.x < posPlayer.x;
-				inputs[1] = Input.touches[0].position.x >= posPlayer.x;
-				inputs[2] = Input.touchCount >= 2;
+//				inputs[0] = Input.touches[0].position.x < posPlayer.x;
+//				inputs[1] = Input.touches[0].position.x >= posPlayer.x;
+//				inputs[2] = Input.touchCount >= 2;
+//				inputs[3] = Input.touches[0].phase == TouchPhase.Began;
+//				inputs[4] = true;
+				
+				
+				inputs[0] = Input.touches[0].position.x > Screen.width*0.05 && 
+							Input.touches[0].position.x < Screen.width*0.15 &&
+							Input.touches[0].position.y < Screen.height*(1-0.8) && 
+							Input.touches[0].position.y > Screen.height*(1-0.9);
+			
+				inputs[1] = Input.touches[0].position.x > Screen.width*0.85 && 
+							Input.touches[0].position.x < Screen.width*0.95 &&
+							Input.touches[0].position.y < Screen.height*(1-0.8) && 
+							Input.touches[0].position.y > Screen.height*(1-0.9);
+							
+				if(Application.loadedLevelName != "Level1")		
+				{		
+					inputs[2] = (Input.touches[0].position.x > Screen.width*0.15 && 
+								Input.touches[0].position.x < Screen.width*0.25 &&
+								Input.touches[0].position.y < Screen.height*(1-0.8) && 
+								Input.touches[0].position.y > Screen.height*(1-0.9)) || 
+								(Input.touches[0].position.x > Screen.width*0.75 && 
+								Input.touches[0].position.x < Screen.width*0.85 &&
+								Input.touches[0].position.y < Screen.height*(1-0.8) && 
+								Input.touches[0].position.y > Screen.height*(1-0.9));
+								
+					if(Input.touchCount >= 2)
+					{
+						inputs[2] = inputs[2] || 
+									(Input.touches[1].position.x > Screen.width*0.15 && 
+									Input.touches[1].position.x < Screen.width*0.25 &&
+									Input.touches[1].position.y < Screen.height*(1-0.8) && 
+									Input.touches[1].position.y > Screen.height*(1-0.9)) || 
+									(Input.touches[1].position.x > Screen.width*0.75 && 
+									Input.touches[1].position.x < Screen.width*0.85 &&
+									Input.touches[1].position.y < Screen.height*(1-0.8) && 
+									Input.touches[1].position.y > Screen.height*(1-0.9));
+					}
+				}else inputs[2] = false;
+				
+				
 				inputs[3] = Input.touches[0].phase == TouchPhase.Began;
 				inputs[4] = true;
+				
+				
+				
 			}
 		}
 		else
@@ -31,11 +74,36 @@ static class VirtualInput
 			}
 			else
 			{
-				inputs[0] = Input.GetMouseButton(0) && Input.mousePosition.x <  posPlayer.x;
-				inputs[1] = Input.GetMouseButton(0) && Input.mousePosition.x >=  posPlayer.x;
-				inputs[2] = Input.GetMouseButton(0) && Input.GetMouseButton(1);
-				inputs[3] = Input.GetMouseButtonDown(0);
-				inputs[4] = true;
+				if(Input.GetMouseButton(0))
+				{
+					inputs[0] = Input.mousePosition.x > Screen.width*0.05 && 
+								Input.mousePosition.x < Screen.width*0.15 &&
+								Input.mousePosition.y < Screen.height*(1-0.8) && 
+								Input.mousePosition.y > Screen.height*(1-0.9);
+				
+					inputs[1] = Input.mousePosition.x > Screen.width*0.85 && 
+								Input.mousePosition.x < Screen.width*0.95 &&
+								Input.mousePosition.y < Screen.height*(1-0.8) && 
+								Input.mousePosition.y > Screen.height*(1-0.9);
+								
+					if(Application.loadedLevelName != "Level1")		
+					{		
+						inputs[2] = (Input.mousePosition.x > Screen.width*0.15 && 
+									Input.mousePosition.x < Screen.width*0.25 &&
+									Input.mousePosition.y < Screen.height*(1-0.8) && 
+									Input.mousePosition.y > Screen.height*(1-0.9)) || 
+									(Input.mousePosition.x > Screen.width*0.75 && 
+									Input.mousePosition.x < Screen.width*0.85 &&
+									Input.mousePosition.y < Screen.height*(1-0.8) && 
+									Input.mousePosition.y > Screen.height*(1-0.9));
+					}else inputs[2] = false;
+
+//					inputs[0] = Input.GetMouseButton(0) && Input.mousePosition.x <  posPlayer.x;
+//					inputs[1] = Input.GetMouseButton(0) && Input.mousePosition.x >=  posPlayer.x;
+//					inputs[2] = Input.GetMouseButton(0) && Input.GetMouseButton(1);
+					inputs[3] = Input.GetMouseButtonDown(0);
+					inputs[4] = true;
+				}
 			}
 			
 		}

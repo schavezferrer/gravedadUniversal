@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\LoadScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\gameManager.js">
     <Files>
-      <File FileName="Assets\Scripts\Miscellaneous\LoadScene.cs" Line="33" Column="1" />
+      <File FileName="Assets\Scripts\Fin.js" Line="33" Column="2" />
+      <File FileName="Assets\Scripts\Ice.js" Line="30" Column="1" />
+      <File FileName="Assets\Scripts\Fire.js" Line="36" Column="2" />
+      <File FileName="Assets\Scripts\Managers\gameManager.js" Line="335" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

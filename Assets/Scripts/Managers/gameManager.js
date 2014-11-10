@@ -1,5 +1,13 @@
 ﻿#pragma strict
 
+var arrowRight : Texture2D;
+var arrowLeft : Texture2D;
+var jump : Texture2D;
+var reload : Texture2D;
+var swapIcon : Texture2D;
+var puntuacion : TextMesh;
+
+
 var startFeedback : GameObject;
 var targetPostStart : GameObject;
 var guia : GameObject;
@@ -41,6 +49,9 @@ private var starting : boolean;
 
 private var far : boolean;
 
+private var totalTime : float;
+private var numSwaps : int;
+
 function Start () {
 
 	scrMoon = (objMoon.GetComponent(moon) as moon).getScript();
@@ -54,6 +65,7 @@ function Start () {
 	scrMoon.setInputs(inputs);
 	scrSun.setInputs(inputs);
 	swapEnabled = Application.loadedLevelName != "Level1" && Application.loadedLevelName != "Level2";	
+	
 //	tagControl.transform.parent = objMoon.transform;
 //	tagControl.transform.localPosition = Vector3.zero;
 
@@ -94,6 +106,9 @@ function Update ()
 	}
 	else
 	{
+		totalTime += Time.deltaTime;
+		puntuacion.text = "Total Time: "+totalTime.ToString('#');
+
 		inputs = VirtualInput.UpdateInput(scrPlayer);
 		var distB = Vector3.Distance(objMoon.transform.position,objSun.transform.position);
 
@@ -227,6 +242,7 @@ function Update ()
 			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).text = "DONE!";
 			(startFeedback.transform.GetChild(0).GetComponent(TextMesh) as TextMesh).color.a += Time.deltaTime*1.5;
 			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,timerEnd*1.5));
+//			puntuacion.text = "Final Score: "+ totalTime.ToString('#.');
 			
 			if(timerEnd > 2) Application.LoadLevel(Application.loadedLevel+1);		
 		}
@@ -285,15 +301,15 @@ function getMoonEnabled()
 function setLinked(val : boolean)
 {
 	linked = val;
-	if(linked) 
-	{
-		if(currPlayer == 0)
-		{
-			linked = false;
-		}
-
-		
-	}
+//	if(linked) 
+//	{
+//		if(currPlayer == 0)
+//		{
+//			linked = false;
+//		}
+//
+//		
+//	}
 //	else	linkControl.transform.position = objSun.transform.position;
 
 	if(linked)
@@ -311,9 +327,10 @@ function setLinked(val : boolean)
 
 function OnGUI()
 {
+	
 	if(!iniSwap && swapEnabled)
 	{
-		if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1,Screen.width*0.07,Screen.height*0.07),"Swap"))
+		if(GUI.Button(Rect(Screen.width*0.01,Screen.height*0.01,Screen.width*0.1,Screen.width*0.1),swapIcon))
 		{
 			audio.enabled= true;
 			audio.Play();
@@ -321,15 +338,20 @@ function OnGUI()
 			phase = 0;
 			posSunSwap  = objSun.transform.position;
 			posMoonSwap  = objMoon.transform.position;
+			numSwaps++;
 		}
 	}
 	
-	if(GUI.Button(Rect(Screen.width*0.02,Screen.height*0.1+100,Screen.width*0.07,Screen.height*0.07),"Reload"))
+	if(GUI.Button(Rect(Screen.width*0.88,Screen.height*0.01,Screen.width*0.1,Screen.width*0.1),reload))
 	{
-//		linked = !linked;
-//		linkControl.particleSystem.renderer.enabled = linked;
-
 		Application.LoadLevel(Application.loadedLevelName);
+	}
+	if(!starting)
+	{
+		GUI.Box(Rect(Screen.width*0.05,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowLeft);
+		if(currPlayer == 0 && Application.loadedLevelName != "Level1") GUI.Box(Rect(Screen.width*0.15,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),jump);
+		GUI.Box(Rect(Screen.width*0.85,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowRight);
+		if(currPlayer == 0 && Application.loadedLevelName != "Level1") GUI.Box(Rect(Screen.width*0.75,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),jump);
 	}
 	
 	
@@ -425,18 +447,20 @@ function swap()
 function link()
 {	
 	var dir : Vector3;
-	if(currPlayer == 0)
-	{
-		dir  = (objMoon.transform.position - objSun.transform.position);
-		objSun.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
-
-	}
-	else if(currPlayer == 1)
-	{
+//	if(currPlayer == 0)
+//	{
+//		dir  = (objMoon.transform.position - objSun.transform.position);
+//		objSun.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
+//
+//	}
+//	else if(currPlayer == 1)
+//	{
+//		dir = -(objMoon.transform.position - objSun.transform.position);
+//		objMoon.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
+//	
+//	}
 		dir = -(objMoon.transform.position - objSun.transform.position);
 		objMoon.rigidbody.AddForce(dir.normalized*dir.magnitude*5-Physics.gravity);
-	
-	}
 }
 
 function changeControl()

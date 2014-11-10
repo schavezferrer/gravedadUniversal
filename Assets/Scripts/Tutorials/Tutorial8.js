@@ -55,7 +55,7 @@ function FixedUpdate () {
 //		obj.transform.FindChild("Dedo").FindChild("Particle System").active = false;
 		obj.transform.FindChild("Texto").active = false;
 //		obj.transform.FindChild("Dedo").FindChild("Texto2").active = false;
-		
+		gm.maxDist = 10;
 		if(timer < -1) GameObject.Destroy(gameObject.transform.parent.gameObject);
 	}
 

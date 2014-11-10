@@ -20,6 +20,16 @@ function Update () {
 
 function setTarget(val : String)
 {
-	if(val == "Sun") target = finSol; 
-	if(val == "Moon") target = finLuna; 
+	if(val == "Sun") 
+	{
+		target = finSol; 
+		finSol.transform.FindChild("Triangulo").active = true;
+		finLuna.transform.FindChild("Triangulo").active = false;
+	} 
+	if(val == "Moon")
+	{
+		target = finLuna; 
+		finSol.transform.FindChild("Triangulo").active = false;
+		finLuna.transform.FindChild("Triangulo").active = true;
+	}
 }
