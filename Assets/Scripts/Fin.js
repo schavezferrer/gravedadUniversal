@@ -31,7 +31,7 @@ function OnTriggerStay(col : Collider)
 {
 	if(col.name == "Luna"  && endMoon)
 	{
-		if(Vector3.Distance(transform.position,col.transform.position) < 0.6)
+		if(Vector3.Distance(transform.position,col.transform.position) < 1)
 		{
 			GM.setEndMoon(true);
 			transform.parent.renderer.material.SetFloat("_gaussEnabled",1);
@@ -42,7 +42,7 @@ function OnTriggerStay(col : Collider)
 	
 	if(col.name == "Sol"  && endSun)
 	{
-		if(Vector3.Distance(transform.position,col.transform.position) < 0.6) 
+		if(Vector3.Distance(transform.position,col.transform.position) < 1) 
 		{
 			transform.parent.renderer.material.SetFloat("_gaussEnabled",1);
 			efectoParticulas.active = true;
