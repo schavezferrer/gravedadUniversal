@@ -39,7 +39,14 @@ function Awake()
 
 function FixedUpdate()
 {
-
+	if ( scrMoon.isMoving() && ( scrMoon.getGrounded() == true )  ) 	{
+		if ( !audio.isPlaying )
+			audio.Play();
+	}
+	else {
+		audio.Stop();
+	}
+	
 	scrMoon.attract();
 }
 

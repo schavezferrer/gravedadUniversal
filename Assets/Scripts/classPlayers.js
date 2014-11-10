@@ -29,10 +29,27 @@ class Players
 			inputs = VirtualInput.newInputs();
 		}
 	}
+	
+	function isActive() : boolean
+	{
+		return active;
+	}
+	
 	function setGrounded(ground : boolean)
 	{
 		isGrounded = ground;
 	}
+	
+	function getGrounded() : boolean
+	{
+		return isGrounded;
+	}
+
+	function isMoving() : boolean
+	{
+		return ( Mathf.Abs(velocity.sqrMagnitude) > 0f  );
+	}
+
 
 	function setNormal(nor : Vector3)
 	{
@@ -64,7 +81,9 @@ class Players
 				else player.rigidbody.AddTorque(-Mathf.Sign(player.rigidbody.angularVelocity.z)*2*Vector3.forward);
 			}
 			velocity = player.rigidbody.velocity*0.8;
-
+			
+			if ( !inputs[0] & !inputs[1] & !inputs[2] & !inputs[3] ) 
+				velocity = Vector3.zero;
 		}
 		else
 		{	

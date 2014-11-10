@@ -194,10 +194,12 @@
      <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameControllerManager.cs" />
      <Compile Include="Assets\Scripts\Managers\OptionsPreferencesManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\WallAttractionManager.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\ExitGame.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\LoadScene.cs" />
      <Compile Include="Assets\Scripts\Miscellaneous\Singleton.cs" />
      <Compile Include="Assets\Scripts\Physic\StopAttractionSound.cs" />
+     <Compile Include="Assets\Scripts\Status\InfluenceZone.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\NGUI\ReadMe - 3.7.5.txt" />

@@ -17,7 +17,15 @@ function Update () {
 
 }
 
-
+function OnTriggerEnter(col : Collider)
+{
+	if ( (col.name == "Luna"  && endMoon) || (col.name == "Sol"  && endSun) )
+	{
+		if (audio != null){
+			audio.Play();
+		}	
+	}
+}
 
 function OnTriggerStay(col : Collider)
 {

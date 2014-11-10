@@ -88,6 +88,15 @@ function Start()
 
 function Update()
 {
+	if ( scrSun.isMoving() && ( scrSun.getGrounded() == true )  ) 	{
+		if ( !audio.isPlaying )
+			audio.Play();
+			
+	}
+	else {
+		audio.Stop();
+	}
+	
 //	scrSun.attracting();
 
 }
