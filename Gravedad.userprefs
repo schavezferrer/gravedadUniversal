@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Fin.js">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="D:\Descargas\Source\assets\Scripts\Tutorials\Tutorial5.js">
     <Files>
-      <File FileName="Assets\Scripts\Managers\gameManager.js" Line="335" Column="1" />
-      <File FileName="Assets\Scripts\virtualInput.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tutorials\Tutorial8.js" Line="58" Column="13" />
-      <File FileName="Assets\Scripts\Fin.js" Line="51" Column="64" />
+      <File FileName="D:\Descargas\Source\assets\Scripts\Tutorials\Tutorial5.js" Line="36" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
