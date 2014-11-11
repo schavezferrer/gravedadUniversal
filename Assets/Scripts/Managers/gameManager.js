@@ -1,4 +1,4 @@
-﻿#pragma strict
+﻿ #pragma strict
 
 var arrowRight : Texture2D;
 var arrowLeft : Texture2D;
@@ -51,6 +51,9 @@ private var far : boolean;
 
 private var totalTime : float;
 private var numSwaps : int;
+
+public var m_ReloadSound : AudioClip;
+public var m_SwapSound : AudioClip;
 
 function Start () {
 
@@ -332,8 +335,7 @@ function OnGUI()
 	{
 		if(GUI.Button(Rect(Screen.width*0.01,Screen.height*0.01,Screen.width*0.1,Screen.width*0.1),swapIcon))
 		{
-			audio.enabled= true;
-			audio.Play();
+			audio.PlayOneShot(m_SwapSound);
 			iniSwap = true;
 			phase = 0;
 			posSunSwap  = objSun.transform.position;
@@ -344,6 +346,8 @@ function OnGUI()
 	
 	if(GUI.Button(Rect(Screen.width*0.88,Screen.height*0.01,Screen.width*0.1,Screen.width*0.1),reload))
 	{
+//		audio.volume = 1f;
+//		audio.PlayOneShot(m_ReloadSound);
 		Application.LoadLevel(Application.loadedLevelName);
 	}
 	if(!starting)
