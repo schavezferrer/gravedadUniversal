@@ -47,8 +47,9 @@ function OnTriggerStay(col : Collider)
 	{
 		var dir : Vector3 = (gameObject.transform.position - col.gameObject.transform.position); 
 		(col.GetComponent(Mobil) as Mobil).setDir(dir.normalized);
-		
+//		Debug.Log(dir.normalized);
 		if(dir.magnitude < 1) (col.GetComponent(Mobil) as Mobil).setMove(false);
+		else (col.GetComponent(Mobil) as Mobil).setMove(true);
 		
 		
 	}
