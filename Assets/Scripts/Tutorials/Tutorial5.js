@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 var obj : GameObject;
+var target : GameObject;
 private var desvanecer : boolean;
 private var timer : float;
 
@@ -33,7 +34,7 @@ function FixedUpdate () {
 //	Debug.Log(VirtualInput.touchPlayer());
 	
 	if( (VirtualInput.onClick() && VirtualInput.touchPlayer() == "SunInput") || 
-		 VirtualInput.onJumping() ) desvanecer = true; 
+		Vector3.Distance(target.transform.position,transform.position) < 1 ) desvanecer = true; 
 	
 	
 }

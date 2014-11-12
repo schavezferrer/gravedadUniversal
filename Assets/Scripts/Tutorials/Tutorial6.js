@@ -2,6 +2,7 @@
 
 var obj : GameObject;
 var target : GameObject;
+var target2 : GameObject;
 private var desvanecer : boolean;
 private var mostrar : boolean;
 private var timer : float;
@@ -19,7 +20,8 @@ function FixedUpdate () {
 
 	if(!done)
 	{
-		if(Vector3.Distance(transform.position,target.transform.position) < 1.3)
+		if(Vector3.Distance(transform.position,target.transform.position) < 4 ||
+			Vector3.Distance(transform.position,target2.transform.position)  < 3)
 		{
 			done = true;
 			

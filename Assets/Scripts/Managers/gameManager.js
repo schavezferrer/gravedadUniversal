@@ -247,7 +247,10 @@ function Update ()
 			startFeedback.renderer.material.SetVector("_TintColor",Vector4(0,0,0,timerEnd*1.5));
 //			puntuacion.text = "Final Score: "+ totalTime.ToString('#.');
 			
-			if(timerEnd > 2) Application.LoadLevel(Application.loadedLevel+1);		
+			if(timerEnd > 2) 
+			{	
+				if(Application.loadedLevel < Application.levelCount)Application.LoadLevel(Application.loadedLevel+1);	
+			}	
 		}
 		else
 		{
@@ -304,16 +307,16 @@ function getMoonEnabled()
 function setLinked(val : boolean)
 {
 	linked = val;
-//	if(linked) 
-//	{
-//		if(currPlayer == 0)
-//		{
-//			linked = false;
-//		}
-//
-//		
-//	}
-//	else	linkControl.transform.position = objSun.transform.position;
+	if(linked) 
+	{
+		if(currPlayer == 0)
+		{
+			linked = false;
+		}
+
+		
+	}
+	else	linkControl.transform.position = objSun.transform.position;
 
 	if(linked)
 	{
