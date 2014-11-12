@@ -29,7 +29,7 @@ function FixedUpdate () {
 		if(timer < -1) GameObject.Destroy(gameObject.transform.parent.gameObject);
 	}
 	
-		gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Luna").transform.position + Vector3(-9,3.5,-5);
+//		gameObject.transform.parent.FindChild("Dedo").position = GameObject.Find("Luna").transform.position + Vector3(-9,3.5,-5);
 
 //	Debug.Log(VirtualInput.touchPlayer());
 	

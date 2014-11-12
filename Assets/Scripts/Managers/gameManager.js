@@ -7,7 +7,6 @@ var reload : Texture2D;
 var swapIcon : Texture2D;
 var puntuacion : TextMesh;
 
-
 var startFeedback : GameObject;
 var targetPostStart : GameObject;
 var guia : GameObject;
@@ -355,10 +354,10 @@ function OnGUI()
 	}
 	if(!starting)
 	{
-		GUI.Box(Rect(Screen.width*0.05,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowLeft);
+//		GUI.Box(Rect(Screen.width*0.05,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowLeft);
 		if(currPlayer == 0 && Application.loadedLevelName != "Level1") GUI.Box(Rect(Screen.width*0.15,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),jump);
 		GUI.Box(Rect(Screen.width*0.85,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowRight);
-		if(currPlayer == 0 && Application.loadedLevelName != "Level1") GUI.Box(Rect(Screen.width*0.75,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),jump);
+		GUI.Box(Rect(Screen.width*0.75,Screen.height*0.8,Screen.width*0.1,Screen.height*0.1),arrowLeft);
 	}
 	
 	
@@ -397,6 +396,8 @@ function swap()
 				objMoon.transform.localScale = Vector3.Lerp(objMoon.transform.localScale,Vector3.one*0.05,Time.deltaTime*20);
 				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.05,Time.deltaTime*20);
 				scrMoon.inverDir = false;	
+				objMoon.collider.enabled = false;
+				objSun.collider.enabled = false;
 
 			}
 			else
@@ -430,12 +431,15 @@ function swap()
 		
 			if(((objMoon.transform.localScale-Vector3.one*0.5).magnitude > 0.01 && (objSun.transform.localScale-Vector3.one*0.73).magnitude > 0.01))
 			{
+				objMoon.collider.enabled = true;
+				objSun.collider.enabled = true;
 				objMoon.transform.localScale = Vector3.Lerp(objMoon.transform.localScale,Vector3.one*0.5,Time.deltaTime*20);
 				objSun.transform.localScale = Vector3.Lerp(objSun.transform.localScale,Vector3.one*0.73,Time.deltaTime*20);
 				scrMoon.inverDir = false;	
 			}
 			else
 			{
+				
 				phase = 0;
 				iniSwap = false;
 				objSun.rigidbody.useGravity = true;
